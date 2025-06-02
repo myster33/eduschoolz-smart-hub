@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
@@ -6,92 +5,62 @@ import GeometricShapes from '@/components/GeometricShapes';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, Users, CreditCard, MessageSquare, BookOpen, Fingerprint, Smartphone, Percent } from 'lucide-react';
-
 const Index = () => {
-  const features = [
-    {
-      icon: <Fingerprint className="h-8 w-8 text-white" />,
-      title: "Biometric Technology",
-      description: "Advanced fingerprint and biometric systems for accurate attendance tracking",
-      color: "bg-accent-orange"
-    },
-    {
-      icon: <CreditCard className="h-8 w-8 text-white" />,
-      title: "School Accounting",
-      description: "Comprehensive financial management with automated ledgers and reporting",
-      color: "bg-primary"
-    },
-    {
-      icon: <BookOpen className="h-8 w-8 text-white" />,
-      title: "Assets Management",
-      description: "Track and manage all school assets efficiently with detailed reporting",
-      color: "bg-accent-yellow"
-    }
-  ];
-
-  const extraServices = [
-    {
-      title: "Full System Installation",
-      description: "On-site setup of the Eduschoolz system.",
-      color: "bg-accent-coral",
-      icon: "🔧"
-    },
-    {
-      title: "System Maintenance",
-      description: "Secure, high-speed server hosting with regular updates.",
-      color: "bg-accent-blue",
-      icon: "📊"
-    },
-    {
-      title: "User Training",
-      description: "Training provided for designated school staff.",
-      color: "bg-accent-orange",
-      icon: "⚙️"
-    },
-    {
-      title: "Data Entry Support",
-      description: "Assistance with initial system data setup.",
-      color: "bg-accent-turquoise",
-      icon: "⭕"
-    }
-  ];
-
-  const aboutFeatures = [
-    "Student Attendance Management",
-    "Student Account Payments Monitoring and Receipting",
-    "Payment Reports and Other Financial Reports", 
-    "School Summative Payments and Balances",
-    "Debtors Management and Debt Collection",
-    "Asset Management",
-    "Fingerprint Technology for Student Attendance",
-    "Barcode Technology for Attendance Tracking",
-    "Real-Time SMS Alerts and Notifications",
-    "Mobile Application (Centralized communication and information transmission to parents and guardians)"
-  ];
-
-  const testimonials = [
-    {
-      school: "Royal Kings School",
-      quote: "Since we started using the Eduschoolz system, tracking student payments and attendance has become incredibly efficient. The real-time SMS alerts are a game changer for parent communication.",
-      author: "Mr. T.P. Davids, Principal, Royal Kings Schools",
-      color: "bg-accent-orange"
-    },
-    {
-      school: "Royal College", 
-      quote: "The fingerprint and barcode attendance tools have significantly reduced manual errors and saved us hours every week.",
-      author: "Mr. T. Dlamini, School Administrator",
-      color: "bg-accent-orange"
-    },
-    {
-      school: "Sultan Academy",
-      quote: "The mobile app gives parents peace of mind and helps them stay informed. It's brought our school community closer together.",
-      author: "Ms. R. Khumalo, Grade Head",
-      color: "bg-accent-orange"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const features = [{
+    icon: <Fingerprint className="h-8 w-8 text-white" />,
+    title: "Biometric Technology",
+    description: "Advanced fingerprint and biometric systems for accurate attendance tracking",
+    color: "bg-accent-orange"
+  }, {
+    icon: <CreditCard className="h-8 w-8 text-white" />,
+    title: "School Accounting",
+    description: "Comprehensive financial management with automated ledgers and reporting",
+    color: "bg-primary"
+  }, {
+    icon: <BookOpen className="h-8 w-8 text-white" />,
+    title: "Assets Management",
+    description: "Track and manage all school assets efficiently with detailed reporting",
+    color: "bg-accent-yellow"
+  }];
+  const extraServices = [{
+    title: "Full System Installation",
+    description: "On-site setup of the Eduschoolz system.",
+    color: "bg-accent-coral",
+    icon: "🔧"
+  }, {
+    title: "System Maintenance",
+    description: "Secure, high-speed server hosting with regular updates.",
+    color: "bg-accent-blue",
+    icon: "📊"
+  }, {
+    title: "User Training",
+    description: "Training provided for designated school staff.",
+    color: "bg-accent-orange",
+    icon: "⚙️"
+  }, {
+    title: "Data Entry Support",
+    description: "Assistance with initial system data setup.",
+    color: "bg-accent-turquoise",
+    icon: "⭕"
+  }];
+  const aboutFeatures = ["Student Attendance Management", "Student Account Payments Monitoring and Receipting", "Payment Reports and Other Financial Reports", "School Summative Payments and Balances", "Debtors Management and Debt Collection", "Asset Management", "Fingerprint Technology for Student Attendance", "Barcode Technology for Attendance Tracking", "Real-Time SMS Alerts and Notifications", "Mobile Application (Centralized communication and information transmission to parents and guardians)"];
+  const testimonials = [{
+    school: "Royal Kings School",
+    quote: "Since we started using the Eduschoolz system, tracking student payments and attendance has become incredibly efficient. The real-time SMS alerts are a game changer for parent communication.",
+    author: "Mr. T.P. Davids, Principal, Royal Kings Schools",
+    color: "bg-accent-orange"
+  }, {
+    school: "Royal College",
+    quote: "The fingerprint and barcode attendance tools have significantly reduced manual errors and saved us hours every week.",
+    author: "Mr. T. Dlamini, School Administrator",
+    color: "bg-accent-orange"
+  }, {
+    school: "Sultan Academy",
+    quote: "The mobile app gives parents peace of mind and helps them stay informed. It's brought our school community closer together.",
+    author: "Ms. R. Khumalo, Grade Head",
+    color: "bg-accent-orange"
+  }];
+  return <div className="min-h-screen">
       <Header />
       
       {/* Hero Section */}
@@ -147,12 +116,10 @@ const Index = () => {
               </p>
               
               <div className="space-y-3">
-                {aboutFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start space-x-3">
+                {aboutFeatures.map((feature, index) => <div key={index} className="flex items-start space-x-3">
                     <span className="text-primary font-bold text-lg">{index + 1}.</span>
                     <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
             
@@ -166,11 +133,7 @@ const Index = () => {
               <Card className="relative z-10 shadow-2xl">
                 <CardContent className="p-8">
                   <div className="text-center">
-                    <img 
-                      src="/lovable-uploads/23eae795-6212-48d7-9b84-452889341487.png" 
-                      alt="School management system interface" 
-                      className="w-full h-48 object-cover rounded-lg mb-6"
-                    />
+                    <img alt="School management system interface" className="w-full h-48 object-cover rounded-lg mb-6" src="/lovable-uploads/15091b69-6182-4c9c-aaca-db32fb7944d8.jpg" />
                     <h3 className="text-2xl font-bold text-primary mb-4">Complete School Management</h3>
                     <p className="text-gray-600">
                       Everything you need to run your educational institution efficiently in one comprehensive system.
@@ -187,9 +150,7 @@ const Index = () => {
       <section className="py-20 bg-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Extra Services!
-            </h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Additional Services!</h2>
             <p className="text-xl text-white max-w-4xl mx-auto">
               To ensure a seamless and value-added experience for our clients,<br />
               we provide the following additional services:
@@ -197,13 +158,11 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {extraServices.map((service, index) => (
-              <div key={index} className={`${service.color} rounded-3xl p-8 text-center text-white shadow-xl hover:shadow-2xl transition-shadow duration-300`}>
+            {extraServices.map((service, index) => <div key={index} className={`${service.color} rounded-3xl p-8 text-center text-white shadow-xl hover:shadow-2xl transition-shadow duration-300`}>
                 <div className="text-4xl mb-4">{service.icon}</div>
                 <h3 className="text-xl font-bold mb-4">{service.title}</h3>
                 <p className="text-white/90">{service.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -221,21 +180,26 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { step: "Step 1", title: "Site Assessment & Requirements Gathering" },
-              { step: "Step 2", title: "Full System Installation & Configuration" },
-              { step: "Step 3", title: "Initial Data Entry & Students cards printing" },
-              { step: "Step 4", title: "User Training & Go-Live Support" }
-            ].map((item, index) => (
-              <div key={index} className="text-center">
+            {[{
+            step: "Step 1",
+            title: "Site Assessment & Requirements Gathering"
+          }, {
+            step: "Step 2",
+            title: "Full System Installation & Configuration"
+          }, {
+            step: "Step 3",
+            title: "Initial Data Entry & Students cards printing"
+          }, {
+            step: "Step 4",
+            title: "User Training & Go-Live Support"
+          }].map((item, index) => <div key={index} className="text-center">
                 <div className="bg-primary text-white rounded-t-3xl p-6 mb-0">
                   <h3 className="text-xl font-bold">{item.step}</h3>
                 </div>
                 <div className="bg-accent-orange text-white rounded-b-3xl p-8">
                   <h4 className="font-bold text-lg">{item.title}</h4>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
           
           <div className="text-center mt-12">
@@ -264,17 +228,15 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="text-center">
+            {testimonials.map((testimonial, index) => <div key={index} className="text-center">
                 <div className="bg-primary text-white rounded-t-3xl p-6 mb-0">
                   <h3 className="text-xl font-bold">{testimonial.school}</h3>
                 </div>
                 <div className={`${testimonial.color} text-white rounded-b-3xl p-8`}>
-                  <p className="mb-4 italic">"{testimonial.quote}"</p>
+                  <p className="mb-4 italic font-normal">"{testimonial.quote}"</p>
                   <p className="text-sm font-medium">— {testimonial.author}</p>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
           
           <div className="text-center mt-12">
@@ -354,14 +316,8 @@ const Index = () => {
             </div>
             
             <div className="text-white">
-              <img 
-                src="/lovable-uploads/c24db9de-a64f-4e45-a6f1-044cdb38e88b.png" 
-                alt="Team collaboration" 
-                className="w-full rounded-lg mb-6"
-              />
-              <p className="text-lg leading-relaxed">
-                Our dedicated team of experts works closely with educational institutions to understand their unique challenges and provide tailored solutions that enhance efficiency, security, and user experience.
-              </p>
+              <img alt="Team collaboration" className="w-full rounded-lg mb-6" src="/lovable-uploads/f3da1d43-08f3-44f2-9780-ae865b2a68b5.jpg" />
+              
             </div>
           </div>
         </div>
@@ -393,8 +349,6 @@ const Index = () => {
 
       <Footer />
       <FloatingCTA />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
