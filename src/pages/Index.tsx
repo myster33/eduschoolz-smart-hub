@@ -2,60 +2,67 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
+import GeometricShapes from '@/components/GeometricShapes';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, Users, CreditCard, MessageSquare, BookOpen, Fingerprint, Smartphone, Percent, AlertTriangle } from 'lucide-react';
+import { CheckCircle, Users, CreditCard, MessageSquare, BookOpen, Fingerprint, Smartphone, Percent } from 'lucide-react';
 
 const Index = () => {
   const features = [
     {
-      icon: <Fingerprint className="h-8 w-8 text-primary" />,
-      title: "Smart Attendance Tracking",
-      description: "Biometric & Barcode technology for accurate attendance monitoring"
+      icon: <Fingerprint className="h-8 w-8 text-white" />,
+      title: "Biometric Technology",
+      description: "Advanced fingerprint and biometric systems for accurate attendance tracking",
+      color: "bg-accent-orange"
     },
     {
-      icon: <CreditCard className="h-8 w-8 text-primary" />,
-      title: "Student Payment Monitoring",
-      description: "Automated ledgers and receipt generation for seamless financial management"
+      icon: <CreditCard className="h-8 w-8 text-white" />,
+      title: "School Accounting",
+      description: "Comprehensive financial management with automated ledgers and reporting",
+      color: "bg-primary"
     },
     {
-      icon: <MessageSquare className="h-8 w-8 text-primary" />,
-      title: "Real-time Parent Notifications",
-      description: "Instant SMS and app notifications to keep parents informed"
-    },
-    {
-      icon: <BookOpen className="h-8 w-8 text-primary" />,
-      title: "Built-in Learning Content",
-      description: "Curriculum-aligned AV content and comprehensive reports"
-    },
-    {
-      icon: <Smartphone className="h-8 w-8 text-primary" />,
-      title: "Parental Mobile App",
-      description: "Complete access for parents via user-friendly mobile application"
-    },
-    {
-      icon: <Percent className="h-8 w-8 text-primary" />,
-      title: "Student Discount Network",
-      description: "Exclusive discount programs for students and families"
+      icon: <BookOpen className="h-8 w-8 text-white" />,
+      title: "Assets Management",
+      description: "Track and manage all school assets efficiently with detailed reporting",
+      color: "bg-accent-yellow"
     }
   ];
 
-  const testimonials = [
+  const extraServices = [
     {
-      quote: "Eduschoolz helped us cut admin time in half! The automated systems are incredible.",
-      author: "Sarah Johnson",
-      role: "Principal, Greenwood Academy"
+      title: "Full System Installation",
+      description: "On-site setup of the Eduschoolz system.",
+      color: "bg-accent-coral"
     },
     {
-      quote: "Our parents love the real-time attendance updates. Communication has never been better.",
-      author: "Michael Chen",
-      role: "Administrator, Riverside School"
+      title: "System Maintenance",
+      description: "Secure, high-speed server hosting with regular updates.",
+      color: "bg-primary"
     },
     {
-      quote: "The financial management tools streamlined our accounting completely.",
-      author: "Rachel Davis",
-      role: "Finance Manager, Oak Valley School"
+      title: "User Training",
+      description: "Training provided for designated school staff.",
+      color: "bg-accent-orange"
+    },
+    {
+      title: "Data Entry Support",
+      description: "Assistance with initial system data setup.",
+      color: "bg-accent-turquoise"
     }
+  ];
+
+  const aboutFeatures = [
+    "Student Attendance Management",
+    "Student Account Payments Monitoring and Receipting",
+    "Payment Reports and Other Financial Reports",
+    "School Summative Payments and Balances",
+    "Debtors Management and Debt Collection",
+    "Asset Management",
+    "Fingerprint Technology for Student Attendance",
+    "Barcode Technology for Attendance Tracking",
+    "Real-Time SMS Alerts and Notifications",
+    "Mobile Application (Centralized communication and information transmission to parents and guardians)"
   ];
 
   return (
@@ -63,121 +70,177 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Revolutionize School Management with a 
-              <span className="text-primary"> Centralized, Smart System</span>
+      <section className="relative bg-gradient-to-br from-primary via-primary-400 to-primary-600 py-20 overflow-hidden">
+        <GeometricShapes />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center text-white animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              Eduschoolz
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Simplify attendance, streamline accounting, empower communication, and enhance learning — all in one place.
+            <p className="text-2xl md:text-3xl font-light mb-8">
+              Unified school management system!
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary-700 text-lg px-8 py-3">
-              <CheckCircle className="mr-2 h-5 w-5" />
-              Sign Up for a Free Demo
+            
+            {/* Feature badges */}
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              {features.map((feature, index) => (
+                <div key={index} className={`${feature.color} px-6 py-3 rounded-lg font-semibold text-white shadow-lg`}>
+                  {feature.title}
+                </div>
+              ))}
+            </div>
+            
+            <div className="max-w-3xl mx-auto mb-8">
+              <p className="text-xl mb-2">Simplify your school's workflow,</p>
+              <p className="text-xl font-semibold mb-8">
+                <span className="font-bold">sign-up now</span> for a demo and experience<br />
+                the power of a centralized system!
+              </p>
+            </div>
+            
+            <Button size="lg" className="bg-accent-coral hover:bg-red-600 text-white text-lg px-12 py-4 rounded-full font-bold shadow-xl">
+              BOOK NOW
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Features Snapshot */}
-      <section className="py-20 bg-white">
+      {/* Extra Services Section */}
+      <section className="py-20 bg-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need in One Platform
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Extra Services!
             </h2>
-            <p className="text-xl text-gray-600">
-              Comprehensive school management tools designed for modern education
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="flex justify-center mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How It Works
-            </h2>
-            <p className="text-xl text-gray-600">
-              Simple implementation process with ongoing support
+            <p className="text-xl text-white max-w-4xl mx-auto">
+              To ensure a seamless and value-added experience for our clients,<br />
+              we provide the following additional services:
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { step: "1", title: "Onsite Installation", description: "Our expert team handles complete setup" },
-              { step: "2", title: "Staff Training", description: "Comprehensive training for all school staff" },
-              { step: "3", title: "Secure Hosting", description: "Reliable hosting with ongoing support" },
-              { step: "4", title: "Regular Updates", description: "Continuous upgrades and maintenance" }
-            ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                  {item.step}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
+            {extraServices.map((service, index) => (
+              <div key={index} className={`${service.color} rounded-3xl p-8 text-center text-white shadow-xl hover:shadow-2xl transition-shadow duration-300`}>
+                <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+                <p className="text-white/90">{service.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-white">
+      {/* About Section */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What Our Clients Say
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6">
-                  <p className="text-gray-600 mb-4 italic">"{testimonial.quote}"</p>
-                  <div>
-                    <p className="font-semibold">{testimonial.author}</p>
-                    <p className="text-sm text-gray-500">{testimonial.role}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+                About Eduschoolz?
+              </h2>
+              <p className="text-lg text-gray-700 mb-8">
+                Eduschoolz is a unified management system that incorporates modules and functionalities suitable for schools and educational institutions. These include:
+              </p>
+              
+              <div className="space-y-3">
+                {aboutFeatures.map((feature, index) => (
+                  <div key={index} className="flex items-start space-x-3">
+                    <span className="text-primary font-bold text-lg">{index + 1}.</span>
+                    <span className="text-gray-700">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary rounded-full"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent-orange rounded-full"></div>
+              <Card className="relative z-10 shadow-2xl">
+                <CardContent className="p-8">
+                  <div className="text-center">
+                    <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                      <BookOpen className="h-12 w-12 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-primary mb-4">Complete School Management</h3>
+                    <p className="text-gray-600">
+                      Everything you need to run your educational institution efficiently in one comprehensive system.
+                    </p>
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Installation Process Section */}
+      <section className="py-20 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+              Installation Process!
+            </h2>
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto">
+              Our professional team ensures a smooth, on-site system installation tailored to your school's infrastructure.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { step: "Step 1", title: "Site Assessment & Requirements Gathering", color: "bg-primary" },
+              { step: "Step 2", title: "Full System Installation & Configuration", color: "bg-primary" },
+              { step: "Step 3", title: "Initial Data Entry & Students cards printing", color: "bg-primary" },
+              { step: "Step 4", title: "User Training & Go-Live Support", color: "bg-primary" }
+            ].map((item, index) => (
+              <div key={index} className="text-center">
+                <div className={`${item.color} text-white rounded-t-3xl p-6 mb-0`}>
+                  <h3 className="text-xl font-bold">{item.step}</h3>
+                </div>
+                <div className="bg-accent-orange text-white rounded-b-3xl p-8">
+                  <h4 className="font-bold text-lg">{item.title}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-xl text-gray-700 mb-8">
+              Open up to new experience to streamline your school's operations
+            </p>
+            <Button size="lg" className="bg-accent-coral hover:bg-red-600 text-white text-lg px-12 py-4 rounded-full font-bold">
+              BOOK NOW
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Priority Section */}
       <section className="py-20 bg-primary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your School Management?
-          </h2>
-          <p className="text-xl text-primary-100 mb-8">
-            Join hundreds of schools already using Eduschoolz to streamline their operations.
-          </p>
-          <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
-            <CheckCircle className="mr-2 h-5 w-5" />
-            Get Your Free Demo Today
-          </Button>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Our Priority
+            </h2>
+            <p className="text-xl text-white max-w-4xl mx-auto">
+              Delivering reliable, secure, and user-friendly school management solutions with ongoing support to ensure your institution runs smoothly and efficiently.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="bg-accent-orange rounded-3xl p-12 text-center">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-8">
+                <Users className="h-8 w-8 text-primary" />
+              </div>
+              <blockquote className="text-white text-xl font-medium">
+                "Through trust and collaboration, our team transforms challenges into impactful solutions."
+              </blockquote>
+            </div>
+            
+            <div className="text-white">
+              <p className="text-lg leading-relaxed">
+                Our dedicated team of experts works closely with educational institutions to understand their unique challenges and provide tailored solutions that enhance efficiency, security, and user experience.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
