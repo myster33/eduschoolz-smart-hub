@@ -5,6 +5,7 @@ import GeometricShapes from '@/components/GeometricShapes';
 import ScrollingBackground from '@/components/ScrollingBackground';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 import { CheckCircle, Users, CreditCard, MessageSquare, BookOpen, Fingerprint, Smartphone, Percent } from 'lucide-react';
 const Index = () => {
   const features = [{
@@ -98,9 +99,11 @@ const Index = () => {
               </p>
             </div>
             
-            <Button size="lg" className="bg-accent-coral hover:bg-red-600 text-white text-lg px-12 py-4 rounded-full font-bold shadow-xl">
-              BOOK NOW
-            </Button>
+            <Link to="/book-demo">
+              <Button size="lg" className="bg-accent-coral hover:bg-red-600 text-white text-lg px-12 py-4 rounded-full font-bold shadow-xl">
+                BOOK NOW
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -208,9 +211,11 @@ const Index = () => {
             <p className="text-xl text-gray-700 mb-8">
               Open up to new experience to streamline your school's operations
             </p>
-            <Button size="lg" className="bg-accent-coral hover:bg-red-600 text-white text-lg px-12 py-4 rounded-full font-bold">
-              BOOK NOW
-            </Button>
+            <Link to="/book-demo">
+              <Button size="lg" className="bg-accent-coral hover:bg-red-600 text-white text-lg px-12 py-4 rounded-full font-bold">
+                BOOK NOW
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -245,9 +250,11 @@ const Index = () => {
             <p className="text-white text-xl mb-8">
               Sign-up for a demo and centralize your school's workflow
             </p>
-            <Button size="lg" className="bg-accent-coral hover:bg-red-600 text-white text-lg px-12 py-4 rounded-full font-bold">
-              BOOK NOW
-            </Button>
+            <Link to="/book-demo">
+              <Button size="lg" className="bg-accent-coral hover:bg-red-600 text-white text-lg px-12 py-4 rounded-full font-bold">
+                BOOK NOW
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -334,9 +341,11 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
             Sign-up for Demo!
           </h2>
-          <Button size="lg" className="bg-primary hover:bg-primary-600 text-white text-lg px-12 py-4 rounded-lg font-bold">
-            BOOK NOW
-          </Button>
+          <Link to="/book-demo">
+            <Button size="lg" className="bg-primary hover:bg-primary-600 text-white text-lg px-12 py-4 rounded-lg font-bold">
+              BOOK NOW
+            </Button>
+          </Link>
           
           <div className="mt-16">
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Us</h3>
