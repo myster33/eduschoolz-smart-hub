@@ -35,9 +35,11 @@ const Header = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             
-            <Button size="sm" className="bg-accent-coral hover:bg-red-600 text-white">
-              BOOK NOW
-            </Button>
+            <Link to="/book-demo">
+              <Button size="sm" className="bg-accent-coral hover:bg-red-600 text-white">
+                BOOK NOW
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -57,9 +59,11 @@ const Header = () => {
               <Button variant="outline" className="w-full border-white text-white hover:bg-white hover:text-primary">
                 Log In
               </Button>
-              <Button className="w-full bg-accent-coral hover:bg-red-600 text-white">
-                BOOK NOW
-              </Button>
+              <Link to="/book-demo">
+                <Button className="w-full bg-accent-coral hover:bg-red-600 text-white">
+                  BOOK NOW
+                </Button>
+              </Link>
             </div>
           </div>
         </div>}
