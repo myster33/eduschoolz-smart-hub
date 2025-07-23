@@ -1,7 +1,7 @@
 
 const GeometricShapes = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
       {/* Left side geometric building blocks */}
       <div className="absolute top-32 left-16">
         <div className="relative">
