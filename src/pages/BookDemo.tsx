@@ -7,7 +7,7 @@ const BookDemo = () => {
     <div className="min-h-screen bg-gradient-to-br from-primary via-primary-600 to-primary-700">
       <div className="container mx-auto px-4 py-8">
         <Link to="/">
-          <Button variant="outline" className="mb-6 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-primary">
+          <Button variant="outline" className="mb-6 border-green-400 text-green-400 hover:bg-green-400 hover:text-primary">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
