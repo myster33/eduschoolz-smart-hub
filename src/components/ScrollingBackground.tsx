@@ -15,7 +15,7 @@ const ScrollingBackground = () => {
   ];
 
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden opacity-[0.21] pointer-events-none">
       <div className="flex animate-scroll-horizontal space-x-8">
         {/* First set of images */}
         {images.map((image, index) => (
