@@ -65,9 +65,6 @@ const Header = () => {
                 {item.name}
               </Link>)}
             <div className="pt-4 pb-2 space-y-2">
-              <Button variant="outline" className="w-full border-white text-white hover:bg-white hover:text-primary">
-                Log In
-              </Button>
               <Link to="/book-demo">
                 <Button className="w-full bg-accent-coral hover:bg-red-600 text-white">
                   BOOK NOW
