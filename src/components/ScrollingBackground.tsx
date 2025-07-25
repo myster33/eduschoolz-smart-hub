@@ -6,7 +6,12 @@ const ScrollingBackground = () => {
     "/lovable-uploads/8fca7d9f-82b8-4e27-a7f1-7473c5ed22bf.png",
     "/lovable-uploads/8abef18f-ed3a-4e4a-b478-3d0163a3aaec.png",
     "/lovable-uploads/d3a83b5d-93eb-4a3f-8e67-0df15a7f9138.png",
-    "/lovable-uploads/ca425121-ad22-48b3-8e25-dbad083a4682.png"
+    "/lovable-uploads/ca425121-ad22-48b3-8e25-dbad083a4682.png",
+    "/lovable-uploads/b44015e1-77b3-49a1-98cc-c78067b0eb17.png",
+    "/lovable-uploads/50d3cda1-3ecd-4758-914b-3431e2c85ebf.png",
+    "/lovable-uploads/fdb96332-5bae-428b-9729-26a7b551148d.png",
+    "/lovable-uploads/77e52647-54a0-4428-b6f4-bc0b4aa0ba23.png",
+    "/lovable-uploads/22b00c5f-9f63-4a45-ae58-832cd2ba99f2.png"
   ];
 
   return (
