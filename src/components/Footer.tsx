@@ -36,10 +36,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-300 text-sm">© 2025 Eduschoolz. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+              <a href="https://wa.me/27736455297" className="text-gray-300 hover:text-white transition-colors">
                 WhatsApp
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+              <a href="mailto:eduschools@romasoft.co.za" className="text-gray-300 hover:text-white transition-colors">
                 Email
               </a>
             </div>

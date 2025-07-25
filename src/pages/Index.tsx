@@ -45,7 +45,7 @@ const Index = () => {
     color: "bg-accent-turquoise",
     icon: "⭕"
   }];
-  const aboutFeatures = ["Student Attendance Management", "Student Account Payments Monitoring and Receipting", "Payment Reports and Other Financial Reports", "School Summative Payments and Balances", "Debtors Management and Debt Collection", "Asset Management", "Fingerprint Technology for Student Attendance", "Barcode Technology for Attendance Tracking", "Real-Time SMS Alerts and Notifications", "Mobile Application (Centralized communication and information transmission to parents and guardians)"];
+  const aboutFeatures = ["Student Attendance Management", "Student Account Payments Monitoring and Receipting", "Payment Reports and Other Financial Reports", "School Summative Payments and Balances", "Debtors Management and Debt Collection", "Asset Management", "Paymaster for staff attendance tracking and payroll statistics", "Barcode Technology for Attendance Tracking", "Real-Time SMS Alerts and Notifications", "Mobile Application (Centralized communication and information transmission to parents and guardians)"];
   const testimonials = [{
     school: "Royal Kings School",
     quote: "Since we started using the Eduschoolz system, tracking student payments and attendance has become incredibly efficient. The real-time SMS alerts are a game changer for parent communication.",
@@ -66,7 +66,7 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary-400 to-primary-600 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary via-primary-400 to-primary-600 py-20 overflow-hidden pt-36">
         <ScrollingBackground />
         <GeometricShapes />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -351,8 +351,8 @@ const Index = () => {
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Us</h3>
             <div className="space-y-2 text-gray-700">
               <p>eduschools@romasoft.co.za</p>
-              <p>eduschoolzug@gmail.com</p>
-              <p>+27 73 645 5297</p>
+              <p>support@eduschoolz.co.za</p>
+              <p>+27 11 568 5135</p>
             </div>
           </div>
         </div>

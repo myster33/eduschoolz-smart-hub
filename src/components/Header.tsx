@@ -15,11 +15,20 @@ const Header = () => {
     name: 'Extra Services',
     href: '/how-it-works'
   }, {
-    name: 'Contact us',
+    name: 'How It Works',
+    href: '/how-it-works'
+  }, {
+    name: 'Pricing',
+    href: '/pricing'
+  }, {
+    name: 'About Us',
+    href: '/about'
+  }, {
+    name: 'Contact Us',
     href: '/contact'
   }];
   const isActive = (href: string) => location.pathname === href;
-  return <header className="bg-primary shadow-lg border-b border-primary-600">
+  return <header className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-sm shadow-lg border-b border-primary-600 transition-opacity duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center">
