@@ -28,7 +28,7 @@ const Header = () => {
     href: '/contact'
   }];
   const isActive = (href: string) => location.pathname === href;
-  return <header className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-sm shadow-lg border-b border-primary-600 transition-opacity duration-300">
+  return <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-sm shadow-lg border-b border-gray-700 transition-opacity duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center">
@@ -37,7 +37,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {navigation.map(item => <Link key={item.name} to={item.href} className={`text-sm font-medium transition-colors hover:text-white ${isActive(item.href) ? 'text-white' : 'text-primary-100'}`}>
+            {navigation.map(item => <Link key={item.name} to={item.href} className={`text-sm font-medium transition-colors hover:text-white ${isActive(item.href) ? 'text-white' : 'text-gray-100'}`}>
                 {item.name}
               </Link>)}
           </nav>
@@ -59,9 +59,9 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && <div className="md:hidden bg-primary-600 border-t border-primary-500">
+      {isMenuOpen && <div className="md:hidden bg-gray-800 border-t border-gray-700">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            {navigation.map(item => <Link key={item.name} to={item.href} className={`block px-3 py-2 text-base font-medium transition-colors ${isActive(item.href) ? 'text-white bg-primary-700' : 'text-primary-100'}`} onClick={() => setIsMenuOpen(false)}>
+            {navigation.map(item => <Link key={item.name} to={item.href} className={`block px-3 py-2 text-base font-medium transition-colors ${isActive(item.href) ? 'text-white bg-gray-700' : 'text-gray-100'}`} onClick={() => setIsMenuOpen(false)}>
                 {item.name}
               </Link>)}
             <div className="pt-4 pb-2 space-y-2">

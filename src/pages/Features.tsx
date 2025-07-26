@@ -47,16 +47,16 @@ const Features = () => {
       ]
     },
     {
-      icon: <BookOpen className="h-12 w-12 text-primary" />,
-      title: "Learning Content",
-      description: "Curriculum-aligned audiovisual content, interactive lessons, and comprehensive academic reporting.",
+      icon: <BarChart className="h-12 w-12 text-primary" />,
+      title: "Paymaster",
+      description: "Staff attendance tracking and comprehensive payroll statistics for efficient workforce management.",
       details: [
-        "Curriculum-aligned AV content library",
-        "Interactive learning modules",
-        "Assignment and homework management",
-        "Progress tracking and analytics",
-        "Grade book integration",
-        "Parent access to child's academic progress"
+        "Biometric staff attendance tracking",
+        "Automated timesheet generation",
+        "Payroll calculation and statistics",
+        "Leave management system",
+        "Overtime tracking and reporting",
+        "Staff performance analytics"
       ]
     },
     {
@@ -83,32 +83,6 @@ const Features = () => {
         "Direct messaging with teachers",
         "Payment history and outstanding fees",
         "Event calendar and important dates"
-      ]
-    },
-    {
-      icon: <Percent className="h-12 w-12 text-primary" />,
-      title: "Student Discount Network",
-      description: "Exclusive discount program connecting students with local businesses and educational resources.",
-      details: [
-        "Partnership with local businesses",
-        "Educational resource discounts",
-        "Student ID card integration",
-        "Digital and physical discount cards",
-        "Usage tracking and analytics",
-        "Revenue sharing with partner businesses"
-      ]
-    },
-    {
-      icon: <AlertTriangle className="h-12 w-12 text-primary" />,
-      title: "Behavior Reporting",
-      description: "Comprehensive behavior tracking and reporting system for outdoor and indoor school activities.",
-      details: [
-        "Incident reporting and documentation",
-        "Behavioral pattern analysis",
-        "Parent notification system",
-        "Disciplinary action tracking",
-        "Positive behavior recognition",
-        "Counselor and teacher collaboration tools"
       ]
     },
     {
