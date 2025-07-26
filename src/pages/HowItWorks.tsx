@@ -103,6 +103,68 @@ const HowItWorks = () => {
         </div>
       </section>
 
+      {/* Timeline Overview */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Implementation Timeline
+            </h2>
+            <p className="text-xl text-gray-600">
+              Complete setup and training typically completed within one week
+            </p>
+          </div>
+
+          <div className="relative">
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary-200"></div>
+            <div className="space-y-8">
+              {[
+                { day: "Day 1-3", title: "Installation & Setup", description: "Hardware installation and software configuration" },
+                { day: "Day 4-5", title: "Training & Testing", description: "Staff training and system testing" },
+                { day: "Day 6", title: "Go-Live Support", description: "Launch support and final adjustments" },
+                { day: "Ongoing", title: "Support & Updates", description: "Continuous support and regular updates" }
+              ].map((item, index) => (
+                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+                  <Card className={`w-80 ${index % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
+                    <CardContent className="p-6">
+                      <div className="text-primary font-semibold mb-2">{item.day}</div>
+                      <h3 className="font-semibold mb-2">{item.title}</h3>
+                      <p className="text-gray-600 text-sm">{item.description}</p>
+                    </CardContent>
+                  </Card>
+                  <div className="w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Our Implementation Process */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Why Choose Our Implementation Process
+            </h2>
+            <p className="text-xl text-gray-600">
+              Professional implementation with ongoing support ensures your success
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {benefits.map((benefit, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-3">{benefit.title}</h3>
+                  <p className="text-gray-600">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* Implementation Steps */}
       <section className="py-20 bg-white">
