@@ -103,6 +103,57 @@ const HowItWorks = () => {
         </div>
       </section>
 
+
+
+      {/* Implementation Steps */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-20">
+            {steps.map((step, index) => (
+              <div key={index} className={`flex flex-col lg:flex-row items-center gap-12 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                <div className="flex-1">
+                  <div className="flex items-center space-x-4 mb-6">
+                    <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                      {step.step}
+                    </div>
+                    {step.icon}
+                  </div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">{step.title}</h2>
+                  <p className="text-lg text-gray-600 mb-6">{step.description}</p>
+                  <div className="bg-primary-50 rounded-lg p-4 mb-6">
+                    <p className="text-primary font-semibold">Duration: {step.duration}</p>
+                  </div>
+                  <ul className="space-y-3">
+                    {step.details.map((detail, detailIndex) => (
+                      <li key={detailIndex} className="flex items-start space-x-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex-1">
+                  <Card className="hover:shadow-xl transition-shadow duration-300">
+                    <CardContent className="p-8">
+                      <div className="flex justify-center mb-6">
+                        <div className="w-32 h-32 bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center">
+                          <div className="text-4xl">
+                            {React.cloneElement(step.icon, { className: "h-16 w-16 text-primary" })}
+                          </div>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-semibold text-center text-gray-900">
+                        Step {step.step}: {step.title}
+                      </h3>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Timeline Overview */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -160,56 +211,6 @@ const HowItWorks = () => {
                   <p className="text-gray-600">{benefit.description}</p>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      {/* Implementation Steps */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-20">
-            {steps.map((step, index) => (
-              <div key={index} className={`flex flex-col lg:flex-row items-center gap-12 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                <div className="flex-1">
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
-                      {step.step}
-                    </div>
-                    {step.icon}
-                  </div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">{step.title}</h2>
-                  <p className="text-lg text-gray-600 mb-6">{step.description}</p>
-                  <div className="bg-primary-50 rounded-lg p-4 mb-6">
-                    <p className="text-primary font-semibold">Duration: {step.duration}</p>
-                  </div>
-                  <ul className="space-y-3">
-                    {step.details.map((detail, detailIndex) => (
-                      <li key={detailIndex} className="flex items-start space-x-2">
-                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex-1">
-                  <Card className="hover:shadow-xl transition-shadow duration-300">
-                    <CardContent className="p-8">
-                      <div className="flex justify-center mb-6">
-                        <div className="w-32 h-32 bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center">
-                          <div className="text-4xl">
-                            {React.cloneElement(step.icon, { className: "h-16 w-16 text-primary" })}
-                          </div>
-                        </div>
-                      </div>
-                      <h3 className="text-xl font-semibold text-center text-gray-900">
-                        Step {step.step}: {step.title}
-                      </h3>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
             ))}
           </div>
         </div>
