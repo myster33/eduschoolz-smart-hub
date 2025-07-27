@@ -22,11 +22,9 @@ const Pricing = () => {
         "Payment Reports and Other Financial Reports",
         "School Summative Payments and Balances",
         "Debtors Management and Debt Collection",
-        "Asset Management",
         "Paymaster for staff attendance tracking and payroll statistics",
         "Barcode Technology for Attendance Tracking",
-        "Real-Time SMS Alerts and Notifications",
-        "Mobile Application (Centralized communication and information transmission to parents and guardians)"
+        "Real-Time SMS Alerts and Notifications"
       ],
       popular: false
     },
