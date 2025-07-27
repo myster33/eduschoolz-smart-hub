@@ -63,7 +63,7 @@ const About = () => {
   ];
 
   const milestones = [
-    { year: "2020", title: "Company Founded", description: "Eduschoolz was established with a vision to revolutionize school management." },
+    { year: "2020", title: "Company Founded", description: "Eduschools was established with a vision to revolutionize school management." },
     { year: "2021", title: "First 50 Schools", description: "Reached our first milestone of 50 schools using our platform." },
     { year: "2022", title: "Mobile App Launch", description: "Launched dedicated mobile application for parents and students." },
     { year: "2023", title: "500+ Schools", description: "Expanded to serve over 500 educational institutions across the region." },
@@ -79,7 +79,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              About Eduschoolz
+              About Eduschools
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We're passionate about transforming education through innovative technology solutions that empower schools, teachers, parents, and students.

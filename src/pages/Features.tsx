@@ -112,7 +112,7 @@ const Features = () => {
               Comprehensive School Management Features
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover all the powerful tools and features that make Eduschoolz the complete solution for modern educational institutions.
+              Discover all the powerful tools and features that make Eduschools the complete solution for modern educational institutions.
             </p>
           </div>
         </div>

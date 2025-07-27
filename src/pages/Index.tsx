@@ -26,7 +26,7 @@ const Index = () => {
   }];
   const extraServices = [{
     title: "Full System Installation",
-    description: "On-site setup of the Eduschoolz system.",
+    description: "On-site setup of the Eduschools system.",
     color: "bg-accent-coral",
     icon: "🔧"
   }, {
@@ -48,7 +48,7 @@ const Index = () => {
   const aboutFeatures = ["Student Attendance Management", "Student Account Payments Monitoring and Receipting", "Payment Reports and Other Financial Reports", "School Summative Payments and Balances", "Debtors Management and Debt Collection", "Asset Management", "Paymaster for staff attendance tracking and payroll statistics", "Barcode Technology for Attendance Tracking", "Real-Time SMS Alerts and Notifications", "Mobile Application (Centralized communication and information transmission to parents and guardians)"];
   const testimonials = [{
     school: "Royal Kings School",
-    quote: "Since we started using the Eduschoolz system, tracking student payments and attendance has become incredibly efficient. The real-time SMS alerts are a game changer for parent communication.",
+    quote: "Since we started using the Eduschools system, tracking student payments and attendance has become incredibly efficient. The real-time SMS alerts are a game changer for parent communication.",
     author: "Mr. T.P. Davids, Principal, Royal Kings Schools",
     color: "bg-accent-orange"
   }, {
@@ -72,7 +72,7 @@ const Index = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-white animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Eduschoolz
+              Eduschools
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
               Delivering reliable, secure, and user-friendly school management solutions with 
@@ -114,10 +114,10 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                About Eduschoolz?
+                About Eduschools?
               </h2>
               <p className="text-lg text-gray-700 mb-8">
-                Eduschoolz is a unified management system that incorporates modules and functionalities suitable for schools and educational institutions. These include:
+                Eduschools is a unified management system that incorporates modules and functionalities suitable for schools and educational institutions. These include:
               </p>
               
               <div className="space-y-3">
@@ -351,7 +351,7 @@ const Index = () => {
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Us</h3>
             <div className="space-y-2 text-gray-700">
               <p>eduschools@romasoft.co.za</p>
-              <p>support@eduschoolz.co.za</p>
+              <p>support@eduschools.co.za</p>
               <p>+27 11 568 5135</p>
             </div>
           </div>

@@ -29,7 +29,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center">
-            <img src="/lovable-uploads/a20110c0-261e-4f09-8208-467d1faa7b06.png" alt="Eduschoolz" className="h-8 w-auto" />
+            <img src="/lovable-uploads/eduschools-logo-green.png" alt="Eduschools" className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}

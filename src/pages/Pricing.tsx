@@ -4,37 +4,39 @@ import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Users, CreditCard, Smartphone } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Pricing = () => {
+  const navigate = useNavigate();
+  
   const pricingTiers = [
     {
-      name: "Starter",
+      name: "Freemium",
       range: "50-100 learners",
-      price: "R1,500",
+      price: "R0",
       period: "/month",
       features: [
         "Complete attendance system",
-        "Basic accounting & payments",
-        "Parent notifications",
-        "Student profiles",
-        "Mobile app access",
-        "Email support"
+        "Parents notifications",
+        "Students profile",
+        "Paymaster"
       ],
       popular: false
     },
     {
-      name: "Growth",
-      range: "101-500 learners",
-      price: "R2,000",
+      name: "Starter",
+      range: "50-500 learners",
+      price: "R1,750",
       period: "/month",
       features: [
-        "All Starter features",
+        "All Freemium features",
+        "Basic accounting & payments",
+        "Mobile app access",
+        "Email support",
+        "Paymaster",
         "Advanced reporting",
-        "Learning content library",
-        "Behavior tracking",
-        "Priority support",
-        "Custom branding"
+        "Learning content library"
       ],
       popular: true
     },
@@ -70,29 +72,9 @@ const Pricing = () => {
     }
   ];
 
-  const additionalPricing = [
-    {
-      icon: <CreditCard className="h-8 w-8 text-primary" />,
-      title: "Student Cards",
-      price: "R199",
-      description: "per student card (includes both print and e-card)",
-      features: ["Physical ID card", "Digital e-card", "Barcode/QR code", "Photo integration"]
-    },
-    {
-      icon: <Smartphone className="h-8 w-8 text-primary" />,
-      title: "Premium Content",
-      price: "R99",
-      description: "monthly for premium learning content",
-      features: ["Advanced AV content", "Interactive lessons", "Additional subjects", "Regular updates"]
-    },
-    {
-      icon: <Users className="h-8 w-8 text-primary" />,
-      title: "Discount Network",
-      price: "30%",
-      description: "of discount margin on student purchases",
-      features: ["Partner business network", "Student discounts", "Usage tracking", "Revenue sharing"]
-    }
-  ];
+  const handleChoosePlan = (planName: string) => {
+    navigate('/registration', { state: { planName } });
+  };
 
   return (
     <div className="min-h-screen">
@@ -144,6 +126,7 @@ const Pricing = () => {
                   </ul>
                   <Button 
                     className={`w-full mt-6 ${tier.popular ? 'bg-primary hover:bg-primary-700' : 'variant-outline'}`}
+                    onClick={() => handleChoosePlan(tier.name)}
                   >
                     Choose {tier.name}
                   </Button>
@@ -154,43 +137,24 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* Additional Pricing */}
+      {/* Cyber Month Promotion */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Additional Services & Options
+              Limited Time Offer
             </h2>
             <p className="text-xl text-gray-600">
-              Enhance your Eduschoolz experience with these optional add-ons
+              Don't miss our exclusive Cyber Month promotion!
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {additionalPricing.map((item, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <CardHeader className="text-center">
-                  <div className="flex justify-center mb-4">
-                    {item.icon}
-                  </div>
-                  <CardTitle className="text-xl">{item.title}</CardTitle>
-                  <div className="mt-2">
-                    <span className="text-3xl font-bold text-primary">{item.price}</span>
-                  </div>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {item.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start space-x-2">
-                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="flex justify-center">
+            <img 
+              src="/lovable-uploads/cyber-month-promo.png" 
+              alt="Cyber Month Promotion - Up to 20% off monthly subscription for the first year" 
+              className="max-w-full h-auto rounded-lg shadow-lg"
+            />
           </div>
         </div>
       </section>

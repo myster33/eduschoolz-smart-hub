@@ -23,7 +23,7 @@ const Contact = () => {
       icon: <Mail className="h-8 w-8 text-primary" />,
       title: "Email Support",
       description: "Send us your questions anytime",
-      contact: "support@eduschoolz.co.za",
+      contact: "support@eduschools.co.za",
       availability: "Response within 24 hours"
     },
     {
@@ -114,7 +114,7 @@ const Contact = () => {
                   <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
                   <div>
                     <h3 className="font-semibold">Personalized Demo</h3>
-                    <p className="text-gray-600 text-sm">See how Eduschoolz works for your specific needs</p>
+                    <p className="text-gray-600 text-sm">See how Eduschools works for your specific needs</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
