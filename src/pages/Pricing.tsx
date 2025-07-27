@@ -13,30 +13,39 @@ const Pricing = () => {
   const pricingTiers = [
     {
       name: "Freemium",
-      range: "50-100 learners",
+      range: "1-500 learners",
       price: "R0",
       period: "/month",
       features: [
-        "Complete attendance system",
-        "Parents notifications",
-        "Students profile",
-        "Paymaster"
+        "Student Attendance Management",
+        "Student Account Payments Monitoring and Receipting",
+        "Payment Reports and Other Financial Reports",
+        "School Summative Payments and Balances",
+        "Debtors Management and Debt Collection",
+        "Asset Management",
+        "Paymaster for staff attendance tracking and payroll statistics",
+        "Barcode Technology for Attendance Tracking",
+        "Real-Time SMS Alerts and Notifications",
+        "Mobile Application (Centralized communication and information transmission to parents and guardians)"
       ],
       popular: false
     },
     {
       name: "Starter",
-      range: "50-500 learners",
+      range: "1-500 learners",
       price: "R1,750",
       period: "/month",
       features: [
-        "All Freemium features",
-        "Basic accounting & payments",
-        "Mobile app access",
-        "Email support",
-        "Paymaster",
-        "Advanced reporting",
-        "Learning content library"
+        "Student Attendance Management",
+        "Student Account Payments Monitoring and Receipting",
+        "Payment Reports and Other Financial Reports",
+        "School Summative Payments and Balances",
+        "Debtors Management and Debt Collection",
+        "Asset Management",
+        "Paymaster for staff attendance tracking and payroll statistics",
+        "Barcode Technology for Attendance Tracking",
+        "Real-Time SMS Alerts and Notifications",
+        "Mobile Application (Centralized communication and information transmission to parents and guardians)"
       ],
       popular: true
     },
@@ -46,7 +55,7 @@ const Pricing = () => {
       price: "R2,500",
       period: "/month",
       features: [
-        "All Growth features",
+        "All Starter features",
         "Advanced analytics",
         "Multiple campus support",
         "API access",
