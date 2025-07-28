@@ -8,9 +8,6 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useAnimatedCount } from '@/hooks/useAnimatedCount';
 
 const About = () => {
-  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
-  const { ref: missionRef, isVisible: missionVisible } = useScrollAnimation();
-  const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
 
   const schoolsCount = useAnimatedCount(50, 3000, statsVisible);
@@ -48,13 +45,13 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen animate-dissolve-in">
+    <div className="min-h-screen">
       <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={heroRef} className={`text-center ${heroVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               About Eduschools
             </h1>
@@ -69,7 +66,7 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div ref={missionRef} className={`${missionVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+            <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Our Mission
               </h2>
@@ -99,7 +96,7 @@ const About = () => {
       {/* Values Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={valuesRef} className={`text-center mb-16 ${valuesVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Values
             </h2>

@@ -6,15 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, UserCheck, CreditCard, MessageCircle, BarChart3, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const HowItWorks = () => {
   const navigate = useNavigate();
-  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
-  const { ref: stepsRef, isVisible: stepsVisible } = useScrollAnimation();
-  const { ref: processRef, isVisible: processVisible } = useScrollAnimation();
-  const { ref: benefitsRef, isVisible: benefitsVisible } = useScrollAnimation();
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
 
   const steps = [
     {
@@ -76,13 +70,13 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="min-h-screen animate-dissolve-in">
+    <div className="min-h-screen">
       <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={heroRef} className={`text-center ${heroVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               How Eduschools Works
             </h1>
@@ -104,7 +98,7 @@ const HowItWorks = () => {
       {/* Implementation Steps */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={stepsRef} className={`text-center mb-16 ${stepsVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Simple Implementation Process
             </h2>
@@ -137,7 +131,7 @@ const HowItWorks = () => {
       {/* Key Features */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={processRef} className={`text-center mb-16 ${processVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Core Features That Drive Results
             </h2>
@@ -168,7 +162,7 @@ const HowItWorks = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div ref={benefitsRef} className={`${benefitsVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+            <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Why Schools Choose Eduschools
               </h2>
@@ -202,7 +196,7 @@ const HowItWorks = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-primary">
-        <div ref={ctaRef} className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${ctaVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Transform Your School?
           </h2>

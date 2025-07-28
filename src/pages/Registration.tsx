@@ -9,13 +9,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Registration = () => {
   const location = useLocation();
   const selectedPlan = location.state?.planName || 'Starter';
-  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
-  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
   
   const [formData, setFormData] = useState({
     schoolName: '',
@@ -42,13 +39,13 @@ const Registration = () => {
   };
 
   return (
-    <div className="min-h-screen animate-dissolve-in">
+    <div className="min-h-screen">
       <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={heroRef} className={`text-center ${heroVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Register Your School
             </h1>
@@ -62,7 +59,7 @@ const Registration = () => {
       {/* Registration Form */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={formRef} className={`${formVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <div>
             <Card className="shadow-xl">
               <CardHeader className="text-center">
                 <CardTitle className="text-2xl">School Registration Form</CardTitle>

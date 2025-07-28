@@ -5,12 +5,8 @@ import FloatingCTA from '@/components/FloatingCTA';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Users, CreditCard, MessageSquare, BookOpen, Fingerprint, Smartphone, Percent, AlertTriangle, BarChart } from 'lucide-react';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Features = () => {
-  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
-  const { ref: featuresRef, isVisible: featuresVisible } = useScrollAnimation();
-
   const features = [
     {
       icon: <Users className="h-12 w-12 text-primary" />,
@@ -105,13 +101,13 @@ const Features = () => {
   ];
 
   return (
-    <div className="min-h-screen animate-dissolve-in">
+    <div className="min-h-screen">
       <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={heroRef} className={`text-center ${heroVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Comprehensive School Management Features
             </h1>
@@ -125,7 +121,7 @@ const Features = () => {
       {/* Features Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={featuresRef} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 ${featuresVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {features.map((feature, index) => (
               <Card key={index} className="hover:shadow-xl transition-shadow duration-300">
                 <CardHeader>
