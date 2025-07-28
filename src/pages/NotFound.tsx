@@ -1,8 +1,11 @@
+
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const NotFound = () => {
   const location = useLocation();
+  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
 
   useEffect(() => {
     console.error(
@@ -12,8 +15,8 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 animate-dissolve-in">
+      <div ref={contentRef} className={`text-center ${contentVisible ? 'animate-dissolve-in-scroll' : ''}`}>
         <h1 className="text-4xl font-bold mb-4">404</h1>
         <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
         <a href="/" className="text-blue-500 hover:text-blue-700 underline">

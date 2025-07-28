@@ -2,87 +2,59 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
-import { Card, CardContent } from '@/components/ui/card';
-import { Users, Target, Award, Heart } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Users, Target, Heart, Award } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const About = () => {
-  const teamExpertise = [
-    {
-      icon: <Users className="h-12 w-12 text-primary" />,
-      title: "IT Specialists",
-      description: "Expert developers and system architects with years of educational technology experience."
-    },
-    {
-      icon: <Target className="h-12 w-12 text-primary" />,
-      title: "Multimedia Experts",
-      description: "Creative professionals developing engaging educational content and user experiences."
-    },
-    {
-      icon: <Award className="h-12 w-12 text-primary" />,
-      title: "Finance Professionals",
-      description: "Accounting and financial management experts ensuring robust fiscal solutions."
-    },
-    {
-      icon: <Heart className="h-12 w-12 text-primary" />,
-      title: "Strategy Consultants",
-      description: "Educational consultants who understand the unique challenges schools face daily."
-    }
-  ];
+  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
+  const { ref: missionRef, isVisible: missionVisible } = useScrollAnimation();
+  const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
+  const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
 
   const values = [
     {
-      title: "Accessibility",
-      description: "Making advanced school management technology accessible to educational institutions of all sizes.",
-      icon: "🌍"
-    },
-    {
-      title: "Security",
-      description: "Protecting sensitive student and school data with enterprise-grade security measures.",
-      icon: "🔒"
-    },
-    {
+      icon: <Target className="h-12 w-12 text-primary" />,
       title: "Innovation",
-      description: "Continuously evolving our platform with cutting-edge features and technologies.",
-      icon: "💡"
+      description: "We continuously evolve our platform to meet the changing needs of modern education."
     },
     {
-      title: "Support",
-      description: "Providing exceptional client support with personalized service and training.",
-      icon: "🤝"
+      icon: <Heart className="h-12 w-12 text-primary" />,
+      title: "Care",
+      description: "We care deeply about the success of every school and student using our platform."
     },
     {
-      title: "Reliability",
-      description: "Ensuring consistent, dependable service that schools can count on every day.",
-      icon: "⚡"
+      icon: <Users className="h-12 w-12 text-primary" />,
+      title: "Community",
+      description: "We believe in building strong connections between schools, parents, and students."
     },
     {
-      title: "Simplicity",
-      description: "Creating intuitive, user-friendly solutions that simplify complex administrative tasks.",
-      icon: "✨"
+      icon: <Award className="h-12 w-12 text-primary" />,
+      title: "Excellence",
+      description: "We strive for excellence in everything we do, from product development to customer service."
     }
   ];
 
-  const milestones = [
-    { year: "2020", title: "Company Founded", description: "Eduschools was established with a vision to revolutionize school management." },
-    { year: "2021", title: "First 50 Schools", description: "Reached our first milestone of 50 schools using our platform." },
-    { year: "2022", title: "Mobile App Launch", description: "Launched dedicated mobile application for parents and students." },
-    { year: "2023", title: "500+ Schools", description: "Expanded to serve over 500 educational institutions across the region." },
-    { year: "2024", title: "AI Integration", description: "Introduced AI-powered analytics and predictive insights." }
+  const stats = [
+    { number: "500+", label: "Schools Served" },
+    { number: "100,000+", label: "Students Managed" },
+    { number: "50,000+", label: "Parents Connected" },
+    { number: "99.9%", label: "Uptime Guarantee" }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen animate-dissolve-in">
       <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div ref={heroRef} className={`text-center ${heroVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               About Eduschools
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're passionate about transforming education through innovative technology solutions that empower schools, teachers, parents, and students.
+              Transforming education through innovative technology solutions that connect schools, parents, and students.
             </p>
           </div>
         </div>
@@ -91,84 +63,56 @@ const About = () => {
       {/* Mission Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div ref={missionRef} className={`${missionVisible ? 'animate-dissolve-in-scroll' : ''}`}>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Our Mission
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                To revolutionize school management by providing a comprehensive, user-friendly platform that streamlines administrative tasks, enhances communication, and improves educational outcomes for all stakeholders.
+                At Eduschools, we believe that education is the foundation of a better future. Our mission is to empower schools with cutting-edge technology that simplifies administration, enhances communication, and ultimately improves the learning experience for every student.
               </p>
-              <p className="text-lg text-gray-600 mb-6">
-                We believe that by simplifying complex administrative processes, we free up educators to focus on what matters most: teaching and nurturing the next generation of leaders.
-              </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-primary mb-2">500+</h3>
-                  <p className="text-gray-600">Schools Served</p>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-primary mb-2">100K+</h3>
-                  <p className="text-gray-600">Students Managed</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-primary mb-4">Our Vision</h3>
-              <p className="text-gray-700 text-lg">
-                To become the leading educational technology platform that empowers every school to achieve excellence through innovative, accessible, and secure management solutions.
+              <p className="text-lg text-gray-600">
+                We're passionate about creating solutions that make educators' lives easier while fostering stronger connections between schools and families. Through innovation and dedication, we're building the future of education management.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Expertise */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Team Expertise
-            </h2>
-            <p className="text-xl text-gray-600">
-              A diverse team of professionals dedicated to educational excellence
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamExpertise.map((expert, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="flex justify-center mb-4">
-                    {expert.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{expert.title}</h3>
-                  <p className="text-gray-600">{expert.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+            <div className="grid grid-cols-2 gap-4">
+              <img 
+                src="/lovable-uploads/8fca7d9f-82b8-4e27-a7f1-7473c5ed22bf.png" 
+                alt="Modern classroom with technology" 
+                className="rounded-lg shadow-lg"
+              />
+              <img 
+                src="/lovable-uploads/8abef18f-ed3a-4e4a-b478-3d0163a3aaec.png" 
+                alt="Students using educational technology" 
+                className="rounded-lg shadow-lg mt-8"
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div ref={valuesRef} className={`text-center mb-16 ${valuesVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Core Values
+              Our Values
             </h2>
-            <p className="text-xl text-gray-600">
-              The principles that guide everything we do
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              The principles that guide everything we do at Eduschools.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="text-4xl mb-4">{value.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
+              <Card key={index} className="text-center hover:shadow-xl transition-shadow duration-300">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    {value.icon}
+                  </div>
+                  <CardTitle className="text-xl">{value.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
                   <p className="text-gray-600">{value.description}</p>
                 </CardContent>
               </Card>
@@ -177,54 +121,52 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Journey
+      {/* Stats Section */}
+      <section className="py-20 bg-primary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={statsRef} className={`text-center mb-16 ${statsVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Our Impact
             </h2>
-            <p className="text-xl text-gray-600">
-              Key milestones in our mission to transform education
+            <p className="text-xl text-primary-100 max-w-3xl mx-auto">
+              Numbers that reflect our commitment to educational excellence.
             </p>
           </div>
 
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary-200"></div>
-            <div className="space-y-12">
-              {milestones.map((milestone, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                  <Card className={`w-80 ${index % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
-                    <CardContent className="p-6">
-                      <div className="text-primary font-bold text-2xl mb-2">{milestone.year}</div>
-                      <h3 className="font-semibold mb-2 text-lg">{milestone.title}</h3>
-                      <p className="text-gray-600">{milestone.description}</p>
-                    </CardContent>
-                  </Card>
-                  <div className="w-6 h-6 bg-primary rounded-full border-4 border-white shadow-lg"></div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                  {stat.number}
                 </div>
-              ))}
-            </div>
+                <div className="text-primary-100 text-lg">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Join Our Mission
-          </h2>
-          <p className="text-xl text-primary-100 mb-8">
-            Partner with us to transform your school's management and unlock new possibilities for educational excellence.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              Schedule a Demo
-            </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors">
-              Contact Us
-            </button>
+      {/* Story Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Story
+            </h2>
+          </div>
+
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-700 mb-6">
+              Founded in 2020, Eduschools emerged from a simple observation: schools needed better tools to manage their operations efficiently. Our founders, experienced educators and technology professionals, recognized the gap between traditional school management methods and the digital age requirements.
+            </p>
+            <p className="text-gray-700 mb-6">
+              Starting with a small team of passionate developers and educators, we built our first school management solution in South Africa. Today, we serve hundreds of schools across the region, helping them streamline their operations and enhance their educational delivery.
+            </p>
+            <p className="text-gray-700">
+              Our journey continues as we expand our platform with new features and capabilities, always keeping our focus on making education management simpler, more efficient, and more effective for everyone involved.
+            </p>
           </div>
         </div>
       </section>

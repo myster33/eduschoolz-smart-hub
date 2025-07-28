@@ -2,58 +2,15 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Phone, Mail, MessageSquare, MapPin, Clock } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { MapPin, Phone, Mail, MessageCircle, Calendar, Clock } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Link } from 'react-router-dom';
 
 const Contact = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
-  const { ref: methodsRef, isVisible: methodsVisible } = useScrollAnimation();
-  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
-  const { ref: actionsRef, isVisible: actionsVisible } = useScrollAnimation();
-
-  const contactMethods = [
-    {
-      icon: <Phone className="h-8 w-8 text-primary" />,
-      title: "Phone Support",
-      description: "Speak directly with our support team",
-      contact: "+27 11 568 5135",
-      availability: "Mon-Fri: 8AM-5PM"
-    },
-    {
-      icon: <Mail className="h-8 w-8 text-primary" />,
-      title: "Email Support",
-      description: "Send us your questions anytime",
-      contact: "support@eduschools.co.za",
-      availability: "Response within 24 hours"
-    },
-    {
-      icon: <MessageSquare className="h-8 w-8 text-primary" />,
-      title: "WhatsApp",
-      description: "Quick support via WhatsApp",
-      contact: "+27 73 645 5297",
-      availability: "Mon-Fri: 8AM-6PM"
-    },
-    {
-      icon: <MapPin className="h-8 w-8 text-primary" />,
-      title: "Office Location",
-      description: "Visit our headquarters",
-      contact: "36 Goldman Street, Florida",
-      availability: "By appointment only"
-    }
-  ];
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted');
-  };
+  const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation();
+  const { ref: mapRef, isVisible: mapVisible } = useScrollAnimation();
 
   return (
     <div className="min-h-screen animate-dissolve-in">
@@ -67,208 +24,137 @@ const Contact = () => {
               Contact Us
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Ready to transform your school management? Get in touch with our team for a personalized demo and consultation.
+              Get in touch with our team. We're here to help you transform your school's operations.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact Methods */}
+      {/* Contact Information */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={methodsRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ${methodsVisible ? 'animate-dissolve-in-scroll' : ''}`}>
-            {contactMethods.map((method, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="flex justify-center mb-4">
-                    {method.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{method.title}</h3>
-                  <p className="text-gray-600 text-sm mb-3">{method.description}</p>
-                  <p className="font-medium text-primary mb-2">{method.contact}</p>
-                  <div className="flex items-center justify-center text-xs text-gray-500">
-                    <Clock className="h-3 w-3 mr-1" />
-                    {method.availability}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div ref={contactRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 ${contactVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+            <Card className="text-center hover:shadow-xl transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex justify-center mb-4">
+                  <MessageCircle className="h-12 w-12 text-primary" />
+                </div>
+                <CardTitle className="text-xl">WhatsApp Chat</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Quick support via WhatsApp
+                </p>
+                <p className="text-gray-700 mb-4">+27 73 645 5297</p>
+                <Button 
+                  className="w-full"
+                  onClick={() => window.open('https://api.whatsapp.com/send/?phone=27736455297&text&type=phone_number&app_absent=0', '_blank')}
+                >
+                  Start Chat
+                </Button>
+              </CardContent>
+            </Card>
 
-      {/* Contact Form */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={formRef} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 ${formVisible ? 'animate-dissolve-in-scroll' : ''}`}>
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Send Us a Message
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Fill out the form below and we'll get back to you within 24 hours. For urgent matters, please call us directly.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                  <div>
-                    <h3 className="font-semibold">Free Consultation</h3>
-                    <p className="text-gray-600 text-sm">Get expert advice on school management solutions</p>
-                  </div>
+            <Card className="text-center hover:shadow-xl transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex justify-center mb-4">
+                  <Calendar className="h-12 w-12 text-primary" />
                 </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                  <div>
-                    <h3 className="font-semibold">Personalized Demo</h3>
-                    <p className="text-gray-600 text-sm">See how Eduschools works for your specific needs</p>
-                  </div>
+                <CardTitle className="text-xl">Schedule a Call</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Book a personalized demo
+                </p>
+                <p className="text-gray-700 mb-4">Free consultation</p>
+                <Button 
+                  className="w-full"
+                  onClick={() => window.location.href = '/book-demo'}
+                >
+                  Book Demo
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center hover:shadow-xl transition-shadow duration-300">
+              <CardHeader>
+                <div className="flex justify-center mb-4">
+                  <Mail className="h-12 w-12 text-primary" />
                 </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                  <div>
-                    <h3 className="font-semibold">Custom Pricing</h3>
-                    <p className="text-gray-600 text-sm">Receive a tailored quote for your institution</p>
-                  </div>
+                <CardTitle className="text-xl">Email Support</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Send us your questions
+                </p>
+                <p className="text-gray-700 mb-4">support@eduschools.co.za</p>
+                <Button 
+                  className="w-full"
+                  onClick={() => window.location.href = 'mailto:support@eduschools.co.za'}
+                >
+                  Send Email
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional Contact Info */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center space-x-4">
+                  <MapPin className="h-8 w-8 text-primary" />
+                  <CardTitle className="text-xl">Visit Our Office</CardTitle>
                 </div>
-              </div>
-            </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-2">36 Goldman Street</p>
+                <p className="text-gray-700 mb-2">Florida</p>
+                <p className="text-gray-700 mb-4">South Africa</p>
+                <p className="text-gray-600">
+                  Open Monday to Friday, 8:00 AM - 5:00 PM
+                </p>
+              </CardContent>
+            </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Get in Touch</CardTitle>
+                <div className="flex items-center space-x-4">
+                  <Phone className="h-8 w-8 text-primary" />
+                  <CardTitle className="text-xl">Call Us</CardTitle>
+                </div>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="firstName">First Name *</Label>
-                      <Input id="firstName" type="text" required className="mt-1" />
-                    </div>
-                    <div>
-                      <Label htmlFor="lastName">Last Name *</Label>
-                      <Input id="lastName" type="text" required className="mt-1" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="email">Email Address *</Label>
-                    <Input id="email" type="email" required className="mt-1" />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" className="mt-1" />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="school">School/Institution Name *</Label>
-                    <Input id="school" type="text" required className="mt-1" />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="studentCount">Number of Students</Label>
-                    <Select>
-                      <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="Select range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="50-100">50-100 students</SelectItem>
-                        <SelectItem value="101-500">101-500 students</SelectItem>
-                        <SelectItem value="501-1000">501-1000 students</SelectItem>
-                        <SelectItem value="1000+">1000+ students</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="inquiry">Inquiry Type</Label>
-                    <Select>
-                      <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="Select inquiry type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="demo">Request Demo</SelectItem>
-                        <SelectItem value="pricing">Pricing Information</SelectItem>
-                        <SelectItem value="support">Technical Support</SelectItem>
-                        <SelectItem value="partnership">Partnership Inquiry</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea 
-                      id="message" 
-                      placeholder="Tell us about your needs and requirements..."
-                      className="mt-1"
-                      rows={4}
-                    />
-                  </div>
-
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary-700">
-                    Send Message
-                  </Button>
-                </form>
+                <p className="text-gray-700 mb-2">Main Line: +27 11 568 5135</p>
+                <p className="text-gray-700 mb-2">WhatsApp: +27 73 645 5297</p>
+                <p className="text-gray-600">
+                  Available during business hours
+                </p>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Quick Actions */}
-      <section className="py-20 bg-white">
+      {/* Map Section */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={actionsRef} className={`${actionsVisible ? 'animate-dissolve-in-scroll' : ''}`}>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Need Immediate Assistance?
-              </h2>
-              <p className="text-xl text-gray-600">
-                Choose the option that works best for you
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6 text-center">
-                  <MessageSquare className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">WhatsApp Chat</h3>
-                  <p className="text-gray-600 mb-4">Get instant support via WhatsApp</p>
-                  <a href="https://api.whatsapp.com/send/?phone=27736455297&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
-                    <Button className="w-full bg-green-600 hover:bg-green-700">
-                      Start WhatsApp Chat
-                    </Button>
-                  </a>
-                </CardContent>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6 text-center">
-                  <Phone className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Schedule a Call</h3>
-                  <p className="text-gray-600 mb-4">Book a convenient time to speak</p>
-                  <Link to="/book-demo">
-                    <Button variant="outline" className="w-full">
-                      Schedule Call
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6 text-center">
-                  <Mail className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Email Support</h3>
-                  <p className="text-gray-600 mb-4">Send detailed questions via email</p>
-                  <a href="mailto:support@eduschools.co.za">
-                    <Button variant="outline" className="w-full">
-                      Send Email
-                    </Button>
-                  </a>
-                </CardContent>
-              </Card>
+          <div ref={mapRef} className={`text-center mb-16 ${mapVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Find Us
+            </h2>
+            <p className="text-xl text-gray-600">
+              Located in Florida, South Africa - Easy to reach and always ready to help.
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+              <div className="text-center">
+                <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
+                <p className="text-gray-600 text-lg">Interactive Map</p>
+                <p className="text-gray-500">36 Goldman Street, Florida, South Africa</p>
+              </div>
             </div>
           </div>
         </div>

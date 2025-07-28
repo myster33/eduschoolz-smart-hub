@@ -1,217 +1,231 @@
 
-import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
-import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, Settings, Users, Shield, RotateCcw } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CheckCircle, UserCheck, CreditCard, MessageCircle, BarChart3, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const HowItWorks = () => {
+  const navigate = useNavigate();
+  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
+  const { ref: stepsRef, isVisible: stepsVisible } = useScrollAnimation();
+  const { ref: processRef, isVisible: processVisible } = useScrollAnimation();
+  const { ref: benefitsRef, isVisible: benefitsVisible } = useScrollAnimation();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
+
   const steps = [
     {
-      step: "1",
-      icon: <Settings className="h-12 w-12 text-primary" />,
-      title: "Onsite Installation by Our Team",
-      description: "Our certified technicians handle the complete setup process at your school premises.",
-      details: [
-        "Hardware installation (biometric scanners, servers, networking)",
-        "Software configuration and customization",
-        "Database setup and data migration",
-        "System integration with existing infrastructure",
-        "Initial testing and quality assurance"
-      ],
-      duration: "2-3 days"
+      number: "01",
+      title: "Initial Consultation",
+      description: "Our team conducts a thorough assessment of your school's needs and current systems to create a customized implementation plan.",
+      icon: <MessageCircle className="h-12 w-12 text-primary" />
     },
     {
-      step: "2",
-      icon: <Users className="h-12 w-12 text-primary" />,
-      title: "Training for School Staff",
-      description: "Comprehensive training ensures your team can effectively use all system features.",
-      details: [
-        "Administrator training for system management",
-        "Teacher training for daily operations",
-        "Front office staff training for payments and communications",
-        "IT staff training for basic maintenance",
-        "User manual and video tutorials provided"
-      ],
-      duration: "1-2 days"
+      number: "02",
+      title: "System Setup",
+      description: "We configure Eduschools specifically for your institution, including student data migration, user accounts, and system customization.",
+      icon: <UserCheck className="h-12 w-12 text-primary" />
     },
     {
-      step: "3",
-      icon: <Shield className="h-12 w-12 text-primary" />,
-      title: "Secure Hosting & Ongoing Support",
-      description: "Reliable cloud hosting with 24/7 monitoring and comprehensive support services.",
-      details: [
-        "Secure cloud hosting with 99.9% uptime guarantee",
-        "Daily automated backups",
-        "SSL encryption and data protection",
-        "24/7 system monitoring and alerts",
-        "Dedicated support team for assistance"
-      ],
-      duration: "Ongoing"
+      number: "03",
+      title: "Staff Training",
+      description: "Comprehensive training sessions for all staff members to ensure smooth adoption and maximize the system's potential.",
+      icon: <BarChart3 className="h-12 w-12 text-primary" />
     },
     {
-      step: "4",
-      icon: <RotateCcw className="h-12 w-12 text-primary" />,
-      title: "Regular Upgrades & Maintenance",
-      description: "Continuous improvements and updates to keep your system current and efficient.",
-      details: [
-        "Monthly software updates and feature additions",
-        "Security patches and bug fixes",
-        "Performance optimization",
-        "New feature rollouts based on user feedback",
-        "Preventive maintenance and health checks"
-      ],
-      duration: "Monthly"
+      number: "04",
+      title: "Go Live",
+      description: "Launch the system with ongoing support to ensure everything runs smoothly from day one.",
+      icon: <CheckCircle className="h-12 w-12 text-primary" />
+    }
+  ];
+
+  const features = [
+    {
+      title: "Student Management",
+      description: "Complete student profiles with attendance, grades, and behavior tracking.",
+      icon: <UserCheck className="h-8 w-8 text-primary" />
+    },
+    {
+      title: "Financial Management",
+      description: "Automated billing, payment processing, and financial reporting.",
+      icon: <CreditCard className="h-8 w-8 text-primary" />
+    },
+    {
+      title: "Communication Hub",
+      description: "Real-time messaging between staff, students, and parents.",
+      icon: <MessageCircle className="h-8 w-8 text-primary" />
+    },
+    {
+      title: "Analytics & Reports",
+      description: "Data-driven insights to improve school performance.",
+      icon: <BarChart3 className="h-8 w-8 text-primary" />
     }
   ];
 
   const benefits = [
-    {
-      title: "Zero Downtime Implementation",
-      description: "Our phased implementation ensures your school operations continue uninterrupted."
-    },
-    {
-      title: "Expert Technical Support",
-      description: "Access to certified technicians and education technology specialists."
-    },
-    {
-      title: "Customized Configuration",
-      description: "System tailored to match your school's specific needs and processes."
-    },
-    {
-      title: "Seamless Data Migration",
-      description: "Safe transfer of existing student and administrative data."
-    }
+    "Reduce administrative workload by up to 70%",
+    "Improve parent-school communication",
+    "Streamline fee collection and financial tracking",
+    "Real-time attendance monitoring",
+    "Comprehensive reporting and analytics",
+    "Mobile app for parents and staff"
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen animate-dissolve-in">
       <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div ref={heroRef} className={`text-center ${heroVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               How Eduschools Works
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From implementation to ongoing support, we make school management effortless with our comprehensive process.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              Transform your school's operations with our comprehensive management system. 
+              Here's how we make it happen.
             </p>
+            <Button 
+              size="lg" 
+              className="text-lg px-8 py-3"
+              onClick={() => navigate('/book-demo')}
+            >
+              Get Started Today
+            </Button>
           </div>
         </div>
       </section>
 
-
-
       {/* Implementation Steps */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-20">
+          <div ref={stepsRef} className={`text-center mb-16 ${stepsVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Simple Implementation Process
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We make getting started easy with our proven 4-step implementation process.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
-              <div key={index} className={`flex flex-col lg:flex-row items-center gap-12 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                <div className="flex-1">
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
-                      {step.step}
-                    </div>
+              <Card key={index} className="relative text-center hover:shadow-xl transition-shadow duration-300">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  {step.number}
+                </div>
+                <CardHeader className="pt-8">
+                  <div className="flex justify-center mb-4">
                     {step.icon}
                   </div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">{step.title}</h2>
-                  <p className="text-lg text-gray-600 mb-6">{step.description}</p>
-                  <div className="bg-primary-50 rounded-lg p-4 mb-6">
-                    <p className="text-primary font-semibold">Duration: {step.duration}</p>
-                  </div>
-                  <ul className="space-y-3">
-                    {step.details.map((detail, detailIndex) => (
-                      <li key={detailIndex} className="flex items-start space-x-2">
-                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex-1">
-                  <Card className="hover:shadow-xl transition-shadow duration-300">
-                    <CardContent className="p-8">
-                      <div className="flex justify-center mb-6">
-                        <div className="w-32 h-32 bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center">
-                          <div className="text-4xl">
-                            {React.cloneElement(step.icon, { className: "h-16 w-16 text-primary" })}
-                          </div>
-                        </div>
-                      </div>
-                      <h3 className="text-xl font-semibold text-center text-gray-900">
-                        Step {step.step}: {step.title}
-                      </h3>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
+                  <CardTitle className="text-xl">{step.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">{step.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Timeline Overview */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      {/* Key Features */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={processRef} className={`text-center mb-16 ${processVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Implementation Timeline
+              Core Features That Drive Results
             </h2>
-            <p className="text-xl text-gray-600">
-              Complete setup and training typically completed within one week
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our platform combines essential school management tools in one integrated solution.
             </p>
           </div>
 
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary-200"></div>
-            <div className="space-y-8">
-              {[
-                { day: "Day 1-3", title: "Installation & Setup", description: "Hardware installation and software configuration" },
-                { day: "Day 4-5", title: "Training & Testing", description: "Staff training and system testing" },
-                { day: "Day 6", title: "Go-Live Support", description: "Launch support and final adjustments" },
-                { day: "Ongoing", title: "Support & Updates", description: "Continuous support and regular updates" }
-              ].map((item, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                  <Card className={`w-80 ${index % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
-                    <CardContent className="p-6">
-                      <div className="text-primary font-semibold mb-2">{item.day}</div>
-                      <h3 className="font-semibold mb-2">{item.title}</h3>
-                      <p className="text-gray-600 text-sm">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                  <div className="w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg"></div>
-                </div>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <Card key={index} className="text-center hover:shadow-xl transition-shadow duration-300">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    {feature.icon}
+                  </div>
+                  <CardTitle className="text-xl">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div ref={benefitsRef} className={`${benefitsVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Why Schools Choose Eduschools
+              </h2>
+              <p className="text-xl text-gray-600 mb-8">
+                Join hundreds of schools that have transformed their operations with our platform.
+              </p>
+              <ul className="space-y-4">
+                {benefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start space-x-3">
+                    <CheckCircle className="h-6 w-6 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <img 
+                src="/lovable-uploads/15091b69-6182-4c9c-aaca-db32fb7944d8.jpg" 
+                alt="School management dashboard" 
+                className="rounded-lg shadow-lg"
+              />
+              <img 
+                src="/lovable-uploads/f3da1d43-08f3-44f2-9780-ae865b2a68b5.jpg" 
+                alt="Student tracking system" 
+                className="rounded-lg shadow-lg mt-8"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Our Implementation Process */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Our Implementation Process
-            </h2>
-            <p className="text-xl text-gray-600">
-              Professional implementation with ongoing support ensures your success
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-3">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+      {/* CTA Section */}
+      <section className="py-20 bg-primary">
+        <div ref={ctaRef} className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${ctaVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Ready to Transform Your School?
+          </h2>
+          <p className="text-xl text-primary-100 mb-8">
+            Join the growing number of schools using Eduschools to streamline their operations.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="text-lg px-8 py-3"
+              onClick={() => navigate('/book-demo')}
+            >
+              Schedule Free Demo
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-primary"
+              onClick={() => navigate('/contact')}
+            >
+              Contact Sales
+            </Button>
           </div>
         </div>
       </section>

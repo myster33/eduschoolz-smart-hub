@@ -6,9 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Pricing = () => {
   const navigate = useNavigate();
+  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
+  const { ref: pricingRef, isVisible: pricingVisible } = useScrollAnimation();
+  const { ref: promoRef, isVisible: promoVisible } = useScrollAnimation();
+  const { ref: faqRef, isVisible: faqVisible } = useScrollAnimation();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
   
   const pricingTiers = [
     {
@@ -84,13 +90,13 @@ const Pricing = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen animate-dissolve-in">
       <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div ref={heroRef} className={`text-center ${heroVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Simple, Transparent Pricing
             </h1>
@@ -104,7 +110,7 @@ const Pricing = () => {
       {/* Main Pricing Tiers */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div ref={pricingRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ${pricingVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             {pricingTiers.map((tier, index) => (
               <Card key={index} className={`relative hover:shadow-xl transition-shadow duration-300 ${tier.popular ? 'border-primary shadow-lg' : ''}`}>
                 {tier.popular && (
@@ -147,7 +153,7 @@ const Pricing = () => {
       {/* Cyber Month Promotion */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div ref={promoRef} className={`text-center mb-16 ${promoVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Limited Time Offer
             </h2>
@@ -169,7 +175,7 @@ const Pricing = () => {
       {/* FAQ Section */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div ref={faqRef} className={`text-center mb-16 ${faqVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Pricing FAQs
             </h2>
@@ -214,7 +220,7 @@ const Pricing = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-primary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div ref={ctaRef} className={`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center ${ctaVisible ? 'animate-dissolve-in-scroll' : ''}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Get Started?
           </h2>
