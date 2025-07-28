@@ -29,8 +29,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact Us</Link></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Help Center</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+              <li><Link to="/terms-of-service" className="text-gray-300 hover:text-white transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
         </div>
@@ -39,10 +38,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-300 text-sm">© 2025 Eduschools. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="https://wa.me/27736455297" className="text-gray-300 hover:text-white transition-colors">
+              <a href="https://api.whatsapp.com/send/?phone=27736455297&text&type=phone_number&app_absent=0" className="text-gray-300 hover:text-white transition-colors">
                 WhatsApp
               </a>
-              <a href="mailto:eduschools@romasoft.co.za" className="text-gray-300 hover:text-white transition-colors">
+              <a href="mailto:support@eduschools.co.za" className="text-gray-300 hover:text-white transition-colors">
                 Email
               </a>
             </div>

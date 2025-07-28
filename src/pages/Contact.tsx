@@ -9,14 +9,21 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Phone, Mail, MessageSquare, MapPin, Clock } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
+  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
+  const { ref: methodsRef, isVisible: methodsVisible } = useScrollAnimation();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
+  const { ref: actionsRef, isVisible: actionsVisible } = useScrollAnimation();
+
   const contactMethods = [
     {
       icon: <Phone className="h-8 w-8 text-primary" />,
       title: "Phone Support",
       description: "Speak directly with our support team",
-      contact: "+27 (0) 11 123 4567",
+      contact: "+27 11 568 5135",
       availability: "Mon-Fri: 8AM-5PM"
     },
     {
@@ -30,14 +37,14 @@ const Contact = () => {
       icon: <MessageSquare className="h-8 w-8 text-primary" />,
       title: "WhatsApp",
       description: "Quick support via WhatsApp",
-      contact: "+27 82 123 4567",
+      contact: "+27 73 645 5297",
       availability: "Mon-Fri: 8AM-6PM"
     },
     {
       icon: <MapPin className="h-8 w-8 text-primary" />,
       title: "Office Location",
       description: "Visit our headquarters",
-      contact: "123 Education Street, Johannesburg",
+      contact: "36 Goldman Street, Florida",
       availability: "By appointment only"
     }
   ];
@@ -49,13 +56,13 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen animate-dissolve-in">
       <Header />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div ref={heroRef} className={`text-center ${heroVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Contact Us
             </h1>
@@ -69,7 +76,7 @@ const Contact = () => {
       {/* Contact Methods */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div ref={methodsRef} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ${methodsVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             {contactMethods.map((method, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
                 <CardContent className="p-6 text-center">
@@ -93,7 +100,7 @@ const Contact = () => {
       {/* Contact Form */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div ref={formRef} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 ${formVisible ? 'animate-dissolve-in-scroll' : ''}`}>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Send Us a Message
@@ -213,48 +220,56 @@ const Contact = () => {
       {/* Quick Actions */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Need Immediate Assistance?
-            </h2>
-            <p className="text-xl text-gray-600">
-              Choose the option that works best for you
-            </p>
-          </div>
+          <div ref={actionsRef} className={`${actionsVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Need Immediate Assistance?
+              </h2>
+              <p className="text-xl text-gray-600">
+                Choose the option that works best for you
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-6 text-center">
-                <MessageSquare className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">WhatsApp Chat</h3>
-                <p className="text-gray-600 mb-4">Get instant support via WhatsApp</p>
-                <Button className="w-full bg-green-600 hover:bg-green-700">
-                  Start WhatsApp Chat
-                </Button>
-              </CardContent>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6 text-center">
+                  <MessageSquare className="h-12 w-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">WhatsApp Chat</h3>
+                  <p className="text-gray-600 mb-4">Get instant support via WhatsApp</p>
+                  <a href="https://api.whatsapp.com/send/?phone=27736455297&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
+                    <Button className="w-full bg-green-600 hover:bg-green-700">
+                      Start WhatsApp Chat
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
 
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-6 text-center">
-                <Phone className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Schedule a Call</h3>
-                <p className="text-gray-600 mb-4">Book a convenient time to speak</p>
-                <Button variant="outline" className="w-full">
-                  Schedule Call
-                </Button>
-              </CardContent>
-            </Card>
+              <Card className="hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6 text-center">
+                  <Phone className="h-12 w-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">Schedule a Call</h3>
+                  <p className="text-gray-600 mb-4">Book a convenient time to speak</p>
+                  <Link to="/book-demo">
+                    <Button variant="outline" className="w-full">
+                      Schedule Call
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
 
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="p-6 text-center">
-                <Mail className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Email Support</h3>
-                <p className="text-gray-600 mb-4">Send detailed questions via email</p>
-                <Button variant="outline" className="w-full">
-                  Send Email
-                </Button>
-              </CardContent>
-            </Card>
+              <Card className="hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6 text-center">
+                  <Mail className="h-12 w-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">Email Support</h3>
+                  <p className="text-gray-600 mb-4">Send detailed questions via email</p>
+                  <a href="mailto:support@eduschools.co.za">
+                    <Button variant="outline" className="w-full">
+                      Send Email
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -19,6 +19,11 @@ const Header = () => {
 
   const isActive = (href: string) => location.pathname === href;
 
+  // Scroll to top when location changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-lg border-b border-gray-200 transition-opacity duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +39,7 @@ const Header = () => {
                 key={item.name}
                 to={item.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(item.href) ? 'text-primary' : 'text-primary/80'
+                  isActive(item.href) ? 'text-black' : 'text-primary/80'
                 }`}
               >
                 {item.name}
@@ -69,7 +74,7 @@ const Header = () => {
                 key={item.name}
                 to={item.href}
                 className={`block px-3 py-2 text-base font-medium transition-colors ${
-                  isActive(item.href) ? 'text-primary bg-primary/10' : 'text-primary/80'
+                  isActive(item.href) ? 'text-black bg-gray-100' : 'text-primary/80'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
