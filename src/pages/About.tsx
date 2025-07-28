@@ -5,12 +5,17 @@ import FloatingCTA from '@/components/FloatingCTA';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Target, Heart, Award } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useAnimatedCount } from '@/hooks/useAnimatedCount';
 
 const About = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { ref: missionRef, isVisible: missionVisible } = useScrollAnimation();
   const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
+
+  const schoolsCount = useAnimatedCount(50, 3000, statsVisible);
+  const studentsCount = useAnimatedCount(10000, 3000, statsVisible);
+  const parentsCount = useAnimatedCount(5000, 3000, statsVisible);
 
   const values = [
     {
@@ -36,9 +41,9 @@ const About = () => {
   ];
 
   const stats = [
-    { number: "500+", label: "Schools Served" },
-    { number: "100,000+", label: "Students Managed" },
-    { number: "50,000+", label: "Parents Connected" },
+    { number: `${schoolsCount}+`, label: "Schools Served" },
+    { number: `${studentsCount.toLocaleString()}+`, label: "Students Managed" },
+    { number: `${parentsCount.toLocaleString()}+`, label: "Parents Connected" },
     { number: "99.9%", label: "Uptime Guarantee" }
   ];
 
@@ -159,10 +164,10 @@ const About = () => {
 
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-700 mb-6">
-              Founded in 2020, Eduschools emerged from a simple observation: schools needed better tools to manage their operations efficiently. Our founders, experienced educators and technology professionals, recognized the gap between traditional school management methods and the digital age requirements.
+              Officially founded in 2024, Eduschools emerged from a simple observation: schools needed better tools to manage their operations efficiently. Our founders, experienced educators and technology professionals, recognized the gap between traditional school management methods and the digital age requirements.
             </p>
             <p className="text-gray-700 mb-6">
-              Starting with a small team of passionate developers and educators, we built our first school management solution in South Africa. Today, we serve hundreds of schools across the region, helping them streamline their operations and enhance their educational delivery.
+              Starting with a small team of passionate developers and educators, we built our first school management solution in South Africa. Today, we serve dozens of schools across the region, helping them streamline their operations and enhance their educational delivery.
             </p>
             <p className="text-gray-700">
               Our journey continues as we expand our platform with new features and capabilities, always keeping our focus on making education management simpler, more efficient, and more effective for everyone involved.

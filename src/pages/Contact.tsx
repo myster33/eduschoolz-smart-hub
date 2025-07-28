@@ -4,13 +4,35 @@ import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { MapPin, Phone, Mail, MessageCircle, Calendar, Clock } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { MapPin, Phone, Mail, MessageCircle, Calendar } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useState } from 'react';
 
 const Contact = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation();
-  const { ref: mapRef, isVisible: mapVisible } = useScrollAnimation();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    school: '',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+  };
 
   return (
     <div className="min-h-screen animate-dissolve-in">
@@ -136,26 +158,103 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section */}
+      {/* Contact Form */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={mapRef} className={`text-center mb-16 ${mapVisible ? 'animate-dissolve-in-scroll' : ''}`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Find Us
-            </h2>
-            <p className="text-xl text-gray-600">
-              Located in Florida, South Africa - Easy to reach and always ready to help.
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
-                <p className="text-gray-600 text-lg">Interactive Map</p>
-                <p className="text-gray-500">36 Goldman Street, Florida, South Africa</p>
-              </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={formRef} className={`${formVisible ? 'animate-dissolve-in-scroll' : ''}`}>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Send Us a Message
+              </h2>
+              <p className="text-xl text-gray-600">
+                Have a question or want to learn more? We'd love to hear from you.
+              </p>
             </div>
+            
+            <Card className="bg-white shadow-lg">
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name *
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address *
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="your@email.com"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number
+                      </label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="+27 XX XXX XXXX"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="school" className="block text-sm font-medium text-gray-700 mb-2">
+                        School Name
+                      </label>
+                      <Input
+                        id="school"
+                        name="school"
+                        type="text"
+                        value={formData.school}
+                        onChange={handleInputChange}
+                        placeholder="Your school name"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message *
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="Tell us how we can help you..."
+                    />
+                  </div>
+                  
+                  <Button type="submit" className="w-full bg-primary hover:bg-primary-700 text-white">
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

@@ -227,7 +227,12 @@ const Pricing = () => {
           <p className="text-xl text-primary-100 mb-8">
             Contact us today for a personalized demo and see which plan works best for your school.
           </p>
-          <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
+          <Button 
+            size="lg" 
+            variant="secondary" 
+            className="text-lg px-8 py-3"
+            onClick={() => navigate('/book-demo')}
+          >
             Schedule Your Free Demo
           </Button>
         </div>
