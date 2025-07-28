@@ -1,10 +1,13 @@
+
 import { Link } from 'react-router-dom';
+
 const Footer = () => {
-  return <footer className="bg-gray-900 text-white">
+  return (
+    <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <img src="/lovable-uploads/eduschools-logo-green.png" alt="Eduschools" className="h-8 w-auto mb-4 filter brightness-0 invert" />
+            <img src="/lovable-uploads/ed096565-ef60-4a4d-b96b-89a675a4e1eb.png" alt="Eduschools" className="h-8 w-auto mb-4" />
             <p className="text-gray-300 max-w-md">
               Revolutionizing school management with a centralized, smart system that simplifies 
               attendance, streamlines accounting, empowers communication, and enhances learning.
@@ -46,6 +49,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
