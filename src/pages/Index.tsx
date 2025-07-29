@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
@@ -377,7 +378,7 @@ const Index = () => {
             <div className="mt-16">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Us</h3>
               <div className="space-y-2 text-gray-700">
-                <p>support@eduschools.co.za</p>
+                <p>admin@eduschools.co.za</p>
                 <p>+27 11 568 5135</p>
               </div>
             </div>
