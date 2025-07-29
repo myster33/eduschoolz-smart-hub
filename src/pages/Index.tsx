@@ -379,7 +379,6 @@ const Index = () => {
               <div className="space-y-2 text-gray-700">
                 <p>support@eduschools.co.za</p>
                 <p>+27 11 568 5135</p>
-                <p>36 Goldman Street, Florida</p>
               </div>
             </div>
           </div>
