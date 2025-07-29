@@ -117,7 +117,7 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">Come see us in person</p>
-                <p className="text-sm text-gray-500 mb-4">2 Hinsbeeck Avenue, Florida Park</p>
+                <p className="text-sm text-gray-500 mb-4">2 Hinsbeeck Avenue, Florida</p>
                 <Button variant="outline" className="w-full">
                   Get Directions
                 </Button>
