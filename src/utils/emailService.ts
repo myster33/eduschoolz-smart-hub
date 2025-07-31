@@ -9,10 +9,14 @@ export interface BookDemoFormData {
   schoolType: string;
   studentCount: string;
   currentSystem: string;
-  specificNeeds: string;
+  specificNeeds: string[];
   preferredContactMethod: string;
   timeframe: string;
   additionalComments: string;
+  preferredDemoDate: string;
+  preferredDemoTime: string;
+  demoMode: string;
+  schoolAddress: string;
 }
 
 export const sendBookDemoEmail = async (formData: BookDemoFormData): Promise<void> => {
@@ -28,14 +32,18 @@ export const sendBookDemoEmail = async (formData: BookDemoFormData): Promise<voi
     from_name: formData.name,
     from_email: formData.email,
     school_name: formData.schoolName,
+    school_address: formData.schoolAddress,
     position: formData.position,
     phone: formData.phoneNumber,
     school_type: formData.schoolType,
     student_count: formData.studentCount,
     current_system: formData.currentSystem,
-    specific_needs: formData.specificNeeds,
+    specific_needs: formData.specificNeeds.join(', '),
     contact_method: formData.preferredContactMethod,
     timeframe: formData.timeframe,
+    demo_date: formData.preferredDemoDate,
+    demo_time: formData.preferredDemoTime,
+    demo_mode: formData.demoMode,
     comments: formData.additionalComments,
     submission_date: new Date().toLocaleString()
   };
@@ -94,14 +102,18 @@ PERSONAL INFORMATION:
 
 SCHOOL INFORMATION:
 - School Name: ${formData.schoolName}
+- School Address: ${formData.schoolAddress}
 - School Type: ${formData.schoolType}
 - Student Count: ${formData.studentCount}
 - Current System: ${formData.currentSystem || 'None specified'}
 
 DEMO PREFERENCES:
+- Preferred Demo Date: ${formData.preferredDemoDate}
+- Preferred Demo Time: ${formData.preferredDemoTime}
+- Demo Mode: ${formData.demoMode}
 - Preferred Contact Method: ${formData.preferredContactMethod}
 - Implementation Timeframe: ${formData.timeframe}
-- Specific Interests: ${formData.specificNeeds || 'Not specified'}
+- Specific Features Interested In: ${formData.specificNeeds.length > 0 ? formData.specificNeeds.join(', ') : 'Not specified'}
 - Additional Comments: ${formData.additionalComments || 'None'}
 
 Submitted on: ${new Date().toLocaleString()}
