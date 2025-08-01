@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Calendar, Clock } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,10 +9,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { useToast } from '@/components/ui/use-toast';
 import { sendBookDemoEmail, type BookDemoFormData } from '@/utils/emailService';
-import { format, addDays, isWeekend, isBefore, startOfDay } from 'date-fns';
+import { format, addDays, isWeekend, isBefore, startOfDay, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addWeeks, isSameMonth, getDay, addMonths, isSameDay } from 'date-fns';
 
 const BookDemo = () => {
   const { toast } = useToast();
@@ -22,6 +21,7 @@ const BookDemo = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [bookedSlots, setBookedSlots] = useState<Set<string>>(new Set());
   const [specificFeatures, setSpecificFeatures] = useState<string[]>([]);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const [formData, setFormData] = useState<BookDemoFormData>({
     name: '',
@@ -58,6 +58,31 @@ const BookDemo = () => {
   const timeSlots = [
     '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'
   ];
+
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // Generate calendar weeks for a given month
+  const generateCalendarWeeks = (month: Date) => {
+    const monthStart = startOfMonth(month);
+    const monthEnd = endOfMonth(month);
+    const calendarStart = startOfWeek(monthStart, { weekStartsOn: 0 }); // Start on Sunday
+    const calendarEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
+
+    const weeks = [];
+    let currentWeek = calendarStart;
+
+    while (currentWeek <= calendarEnd) {
+      const week = [];
+      for (let i = 0; i < 7; i++) {
+        const day = addDays(currentWeek, i);
+        week.push(day);
+      }
+      weeks.push(week);
+      currentWeek = addWeeks(currentWeek, 1);
+    }
+
+    return weeks;
+  };
 
   const handleInputChange = (field: keyof BookDemoFormData, value: string | string[]) => {
     setFormData(prev => ({
@@ -99,7 +124,6 @@ const BookDemo = () => {
         preferredDemoTime: formattedTime
       }));
 
-      // Mark this slot as booked (in a real app, this would be persisted to a database)
       setBookedSlots(prev => new Set([...prev, dateTimeKey]));
       
       setShowDateTimePicker(false);
@@ -121,6 +145,74 @@ const BookDemo = () => {
     if (!selectedDate) return false;
     const dateTimeKey = `${format(selectedDate, 'yyyy-MM-dd')}-${time}`;
     return bookedSlots.has(dateTimeKey);
+  };
+
+  const renderCalendarMonth = (month: Date) => {
+    const weeks = generateCalendarWeeks(month);
+    const monthName = format(month, 'MMMM yyyy');
+
+    return (
+      <div key={monthName} className="bg-white rounded-lg border border-gray-200 shadow-sm">
+        <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 rounded-t-lg">
+          <h3 className="text-lg font-semibold text-gray-800 text-center">{monthName}</h3>
+        </div>
+        <div className="p-4">
+          {/* Day headers */}
+          <div className="grid grid-cols-7 gap-1 mb-2">
+            {dayNames.map((day, index) => (
+              <div
+                key={day}
+                className={`text-center text-sm font-medium py-2 ${
+                  index === 0 ? 'text-red-600' : 'text-gray-600'
+                }`}
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+          
+          {/* Calendar grid */}
+          {weeks.map((week, weekIndex) => (
+            <div key={weekIndex} className="grid grid-cols-7 gap-1 mb-1">
+              {week.map((day, dayIndex) => {
+                const isCurrentMonth = isSameMonth(day, month);
+                const isSunday = getDay(day) === 0;
+                const isDisabled = isDateDisabled(day);
+                const isSelected = selectedDate && isSameDay(day, selectedDate);
+                const isToday = isSameDay(day, new Date());
+
+                return (
+                  <button
+                    key={day.toISOString()}
+                    type="button"
+                    onClick={() => !isDisabled && setSelectedDate(day)}
+                    disabled={isDisabled}
+                    className={`
+                      h-10 w-full text-sm rounded-md transition-all duration-200 font-medium
+                      ${!isCurrentMonth 
+                        ? 'text-gray-300 cursor-not-allowed' 
+                        : isDisabled
+                          ? 'text-gray-400 cursor-not-allowed bg-gray-100'
+                          : isSelected
+                            ? 'bg-primary text-white shadow-md'
+                            : isToday
+                              ? 'bg-primary/10 text-primary border-2 border-primary'
+                              : isSunday
+                                ? 'text-red-600 hover:bg-red-50'
+                                : 'text-gray-700 hover:bg-gray-100'
+                      }
+                      ${isCurrentMonth && !isDisabled ? 'cursor-pointer' : ''}
+                    `}
+                  >
+                    {format(day, 'd')}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -378,37 +470,57 @@ const BookDemo = () => {
                         </div>
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
+                    <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-y-auto">
                       <DialogHeader className="pb-4 border-b">
                         <DialogTitle className="text-xl font-semibold text-center">
                           Schedule Your Demo Session
                         </DialogTitle>
                         <p className="text-sm text-gray-600 text-center mt-2">
-                          Available Monday-Friday, 9:00 AM - 4:00 PM (1-hour sessions)
+                          Available Monday-Friday, 9:00 AM - 4:00 PM (Sundays shown in red)
                         </p>
                       </DialogHeader>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-6">
-                        <div className="space-y-4">
-                          <div>
-                            <Label className="text-base font-medium">1. Select Date</Label>
-                            <p className="text-sm text-gray-600 mb-3">Choose from the next 30 days (weekdays only)</p>
-                            <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                              <CalendarComponent
-                                mode="single"
-                                selected={selectedDate}
-                                onSelect={setSelectedDate}
-                                disabled={isDateDisabled}
-                                className="rounded-md border-0 bg-white shadow-sm"
-                              />
-                            </div>
-                          </div>
+                      
+                      <div className="space-y-6 py-6">
+                        {/* Calendar Navigation */}
+                        <div className="flex items-center justify-between mb-4">
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setCurrentMonth(addMonths(currentMonth, -1))}
+                            className="flex items-center"
+                          >
+                            <ChevronLeft className="h-4 w-4 mr-1" />
+                            Previous
+                          </Button>
+                          <h3 className="text-lg font-semibold">
+                            Select Date (Next 30 days)
+                          </h3>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
+                            className="flex items-center"
+                          >
+                            Next
+                            <ChevronRight className="h-4 w-4 ml-1" />
+                          </Button>
                         </div>
-                        <div className="space-y-4">
+
+                        {/* Calendar Months */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                          {renderCalendarMonth(currentMonth)}
+                          {renderCalendarMonth(addMonths(currentMonth, 1))}
+                        </div>
+
+                        {/* Time Selection */}
+                        <div className="space-y-4 border-t pt-6">
                           <div>
-                            <Label className="text-base font-medium">2. Select Time Slot</Label>
+                            <Label className="text-base font-medium">Select Time Slot</Label>
                             <p className="text-sm text-gray-600 mb-3">Choose your preferred 1-hour time slot</p>
                             {selectedDate ? (
-                              <div className="grid grid-cols-2 gap-3">
+                              <div className="grid grid-cols-4 gap-3">
                                 {timeSlots.map((time) => {
                                   const isBooked = isTimeSlotBooked(time);
                                   return (
@@ -446,6 +558,7 @@ const BookDemo = () => {
                               </div>
                             )}
                           </div>
+                          
                           {selectedDate && selectedTime && (
                             <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                               <h4 className="font-medium text-green-800 mb-2">Selected Schedule:</h4>
@@ -457,6 +570,7 @@ const BookDemo = () => {
                               </p>
                             </div>
                           )}
+                          
                           <div className="mt-6 pt-4 border-t">
                             <Button
                               type="button"
