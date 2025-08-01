@@ -11,15 +11,15 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useAnimatedCount } from '@/hooks/useAnimatedCount';
 
 const Index = () => {
-  const heroRef = useScrollAnimation();
-  const featuresRef = useScrollAnimation();
-  const statsRef = useScrollAnimation();
-  const testimonialsRef = useScrollAnimation();
-  const ctaRef = useScrollAnimation();
+  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
+  const { ref: featuresRef, isVisible: featuresVisible } = useScrollAnimation();
+  const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
+  const { ref: testimonialsRef, isVisible: testimonialsVisible } = useScrollAnimation();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
 
-  const studentsCount = useAnimatedCount(50000, 2000);
-  const schoolsCount = useAnimatedCount(500, 2000);
-  const uptime = useAnimatedCount(99.9, 2000, 1);
+  const studentsCount = useAnimatedCount(50000, 2000, statsVisible);
+  const schoolsCount = useAnimatedCount(500, 2000, statsVisible);
+  const uptime = useAnimatedCount(99.9, 2000, statsVisible);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary via-primary-600 to-primary-700 relative overflow-hidden">
