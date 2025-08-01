@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ArrowLeft, Calendar, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowLeft, Calendar, Clock, ChevronLeft, ChevronRight, CheckCircle, Home } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,15 +8,19 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { useToast } from '@/hooks/use-toast';
 import { sendBookDemoEmail, type BookDemoFormData } from '@/utils/emailService';
 import { format, addDays, isWeekend, isBefore, startOfDay, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addWeeks, isSameMonth, getDay, addMonths, isSameDay } from 'date-fns';
 
 const BookDemo = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showDateTimePicker, setShowDateTimePicker] = useState(false);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [selectedTime, setSelectedTime] = useState('');
   const [bookedSlots, setBookedSlots] = useState<Set<string>>(new Set());
@@ -215,7 +219,7 @@ const BookDemo = () => {
     );
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate required fields
@@ -235,15 +239,19 @@ const BookDemo = () => {
       return;
     }
 
+    // Show confirmation dialog instead of submitting directly
+    setShowConfirmDialog(true);
+  };
+
+  const handleConfirmSubmit = async () => {
+    setShowConfirmDialog(false);
     setIsSubmitting(true);
 
     try {
       await sendBookDemoEmail(formData);
       
-      toast({
-        title: "Demo Request Sent Successfully!",
-        description: "We'll contact you within 24 hours to confirm your demo appointment.",
-      });
+      setIsSubmitting(false);
+      setShowSuccessDialog(true);
 
       // Reset form
       setFormData({
@@ -267,14 +275,18 @@ const BookDemo = () => {
       setSpecificFeatures([]);
     } catch (error) {
       console.error('Error sending demo request:', error);
+      setIsSubmitting(false);
       toast({
         title: "Error",
         description: "Failed to send demo request. Please try again or contact us directly.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
     }
+  };
+
+  const handleBackHome = () => {
+    setShowSuccessDialog(false);
+    navigate('/');
   };
 
   return (
@@ -296,7 +308,7 @@ const BookDemo = () => {
           </div>
           
           <div className="bg-white rounded-lg shadow-2xl p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleFormSubmit} className="space-y-6">
               {/* Personal Information */}
               <div className="space-y-4">
                 <h2 className="text-2xl font-semibold text-gray-800 border-b pb-2">Personal Information</h2>
@@ -669,6 +681,107 @@ const BookDemo = () => {
             </form>
           </div>
         </div>
+
+        {/* Confirmation Dialog */}
+        <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+          <AlertDialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+            <AlertDialogHeader>
+              <AlertDialogTitle className="text-xl font-semibold text-center">
+                Confirm Your Demo Request
+              </AlertDialogTitle>
+              <AlertDialogDescription className="text-center text-gray-600">
+                Please review your information before submitting your demo request.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            
+            <div className="space-y-6 py-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <h3 className="font-semibold text-lg border-b pb-2">Personal Information</h3>
+                  <div className="space-y-2 text-sm">
+                    <p><span className="font-medium">Name:</span> {formData.name}</p>
+                    <p><span className="font-medium">Email:</span> {formData.email}</p>
+                    <p><span className="font-medium">Position:</span> {formData.position}</p>
+                    {formData.phoneNumber && <p><span className="font-medium">Phone:</span> {formData.phoneNumber}</p>}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="font-semibold text-lg border-b pb-2">School Information</h3>
+                  <div className="space-y-2 text-sm">
+                    <p><span className="font-medium">School Name:</span> {formData.schoolName}</p>
+                    <p><span className="font-medium">School Type:</span> {formData.schoolType}</p>
+                    <p><span className="font-medium">Student Count:</span> {formData.studentCount}</p>
+                    <p><span className="font-medium">Address:</span> {formData.schoolAddress}</p>
+                    {formData.currentSystem && <p><span className="font-medium">Current System:</span> {formData.currentSystem}</p>}
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="font-semibold text-lg border-b pb-2">Demo Preferences</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                  <div className="space-y-2">
+                    <p><span className="font-medium">Demo Date:</span> {formData.preferredDemoDate}</p>
+                    <p><span className="font-medium">Demo Time:</span> {formData.preferredDemoTime}</p>
+                    <p><span className="font-medium">Mode:</span> {formData.demoMode}</p>
+                    <p><span className="font-medium">Contact Method:</span> {formData.preferredContactMethod}</p>
+                    <p><span className="font-medium">Implementation Timeframe:</span> {formData.timeframe}</p>
+                  </div>
+                  
+                  {formData.specificNeeds.length > 0 && (
+                    <div className="space-y-2">
+                      <p className="font-medium">Interested Features:</p>
+                      <ul className="list-disc list-inside space-y-1 text-xs">
+                        {formData.specificNeeds.map((feature, index) => (
+                          <li key={index}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                
+                {formData.additionalComments && (
+                  <div className="space-y-2">
+                    <p className="font-medium">Additional Comments:</p>
+                    <p className="text-sm bg-gray-50 p-3 rounded-md">{formData.additionalComments}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <AlertDialogFooter>
+              <AlertDialogCancel>No, Let me edit</AlertDialogCancel>
+              <AlertDialogAction onClick={handleConfirmSubmit} disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Yes, Submit Request'}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Success Dialog */}
+        <AlertDialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+          <AlertDialogContent className="max-w-md">
+            <AlertDialogHeader>
+              <div className="flex items-center justify-center mb-4">
+                <CheckCircle className="h-16 w-16 text-green-500" />
+              </div>
+              <AlertDialogTitle className="text-xl font-semibold text-center">
+                Demo Request Sent Successfully!
+              </AlertDialogTitle>
+              <AlertDialogDescription className="text-center text-gray-600">
+                We'll contact you within 24 hours to confirm your demo appointment.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={handleBackHome} className="w-full">
+                <Home className="mr-2 h-4 w-4" />
+                Back Home
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );
