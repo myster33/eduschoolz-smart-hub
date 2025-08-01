@@ -13,6 +13,8 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { useToast } from '@/hooks/use-toast';
 import { sendBookDemoEmail, type BookDemoFormData } from '@/utils/emailService';
 import { format, addDays, isWeekend, isBefore, startOfDay, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addWeeks, isSameMonth, getDay, addMonths, isSameDay } from 'date-fns';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const BookDemo = () => {
   const { toast } = useToast();
@@ -291,19 +293,14 @@ const BookDemo = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary via-primary-600 to-primary-700">
-      <div className="container mx-auto px-4 py-8">
-        <Link to="/">
-          <Button variant="outline" className="mb-6 border-green-400 text-green-400 hover:bg-green-400 hover:text-primary">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
-          </Button>
-        </Link>
-        
+      <Header />
+      
+      <div className="container mx-auto px-4 py-8 pt-24">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-white mb-4">Book Your Demo</h1>
+            <h1 className="text-4xl font-bold text-white mb-4">Book Your Installation Demo</h1>
             <p className="text-xl text-primary-100">
-              Ready to get started? Fill out the form below to schedule your demo.
+              Ready to get started? Fill out the form below to schedule your installation demo.
             </p>
           </div>
           
@@ -440,7 +437,7 @@ const BookDemo = () => {
 
               {/* Demo Preferences */}
               <div className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-800 border-b pb-2">Demo Preferences</h2>
+                <h2 className="text-2xl font-semibold text-gray-800 border-b pb-2">Installation Demo Preferences</h2>
                 
                 <div>
                   <Label>Specific Features You're Most Interested In</Label>
@@ -460,8 +457,8 @@ const BookDemo = () => {
                 </div>
 
                 <div>
-                  <Label className="text-base font-medium">Preferred Date and Time for Demo *</Label>
-                  <p className="text-sm text-gray-600 mt-1 mb-3">Select your preferred date and time for the demo session</p>
+                  <Label className="text-base font-medium">Preferred Date and Time for Installation Demo *</Label>
+                  <p className="text-sm text-gray-600 mt-1 mb-3">Select your preferred date and time for the installation demo session</p>
                   <Dialog open={showDateTimePicker} onOpenChange={setShowDateTimePicker}>
                     <DialogTrigger asChild>
                       <Button
@@ -485,7 +482,7 @@ const BookDemo = () => {
                     <DialogContent className="sm:max-w-[900px] max-h-[90vh] overflow-y-auto">
                       <DialogHeader className="pb-4 border-b">
                         <DialogTitle className="text-xl font-semibold text-center">
-                          Schedule Your Demo Session
+                          Schedule Your Installation Demo Session
                         </DialogTitle>
                         <p className="text-sm text-gray-600 text-center mt-2">
                           Available Monday-Friday, 9:00 AM - 4:00 PM (Sundays shown in red)
@@ -603,7 +600,7 @@ const BookDemo = () => {
                 </div>
 
                 <div>
-                  <Label>Mode of Demo *</Label>
+                  <Label>Mode of Installation Demo *</Label>
                   <RadioGroup 
                     value={formData.demoMode} 
                     onValueChange={(value) => handleInputChange('demoMode', value)}
@@ -611,11 +608,11 @@ const BookDemo = () => {
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="online" id="online-demo" />
-                      <Label htmlFor="online-demo">Online Demo</Label>
+                      <Label htmlFor="online-demo">Online Installation Demo</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="onsite" id="onsite-demo" />
-                      <Label htmlFor="onsite-demo">Onsite Demo</Label>
+                      <Label htmlFor="onsite-demo">Onsite Installation Demo</Label>
                     </div>
                   </RadioGroup>
                 </div>
@@ -676,7 +673,7 @@ const BookDemo = () => {
                 className="w-full text-lg py-3"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Submitting...' : 'Book Demo'}
+                {isSubmitting ? 'Submitting...' : 'Book Installation Demo'}
               </Button>
             </form>
           </div>
@@ -687,10 +684,10 @@ const BookDemo = () => {
           <AlertDialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
             <AlertDialogHeader>
               <AlertDialogTitle className="text-xl font-semibold text-center">
-                Confirm Your Demo Request
+                Confirm Your Installation Demo Request
               </AlertDialogTitle>
               <AlertDialogDescription className="text-center text-gray-600">
-                Please review your information before submitting your demo request.
+                Please review your information before submitting your installation demo request.
               </AlertDialogDescription>
             </AlertDialogHeader>
             
@@ -719,11 +716,11 @@ const BookDemo = () => {
               </div>
 
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg border-b pb-2">Demo Preferences</h3>
+                <h3 className="font-semibold text-lg border-b pb-2">Installation Demo Preferences</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
                   <div className="space-y-2">
-                    <p><span className="font-medium">Demo Date:</span> {formData.preferredDemoDate}</p>
-                    <p><span className="font-medium">Demo Time:</span> {formData.preferredDemoTime}</p>
+                    <p><span className="font-medium">Installation Demo Date:</span> {formData.preferredDemoDate}</p>
+                    <p><span className="font-medium">Installation Demo Time:</span> {formData.preferredDemoTime}</p>
                     <p><span className="font-medium">Mode:</span> {formData.demoMode}</p>
                     <p><span className="font-medium">Contact Method:</span> {formData.preferredContactMethod}</p>
                     <p><span className="font-medium">Implementation Timeframe:</span> {formData.timeframe}</p>
@@ -767,10 +764,10 @@ const BookDemo = () => {
                 <CheckCircle className="h-16 w-16 text-green-500" />
               </div>
               <AlertDialogTitle className="text-xl font-semibold text-center">
-                Demo Request Sent Successfully!
+                Installation Demo Request Sent Successfully!
               </AlertDialogTitle>
               <AlertDialogDescription className="text-center text-gray-600">
-                We'll contact you within 24 hours to confirm your demo appointment.
+                We'll contact you within 24 hours to confirm your installation demo appointment.
               </AlertDialogDescription>
             </AlertDialogHeader>
             
@@ -783,6 +780,8 @@ const BookDemo = () => {
           </AlertDialogContent>
         </AlertDialog>
       </div>
+
+      <Footer />
     </div>
   );
 };
