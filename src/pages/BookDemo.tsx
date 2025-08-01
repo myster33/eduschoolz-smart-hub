@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -341,77 +340,134 @@ const BookDemo = () => {
                 
                 <div>
                   <Label>Specific Features You're Most Interested In</Label>
-                  <div className="mt-2 space-y-3 max-h-48 overflow-y-auto">
+                  <div className="mt-2 space-y-3 max-h-48 overflow-y-auto border border-gray-200 rounded-md p-4 bg-gray-50">
                     {featureOptions.map((feature) => (
-                      <div key={feature} className="flex items-center space-x-2">
+                      <div key={feature} className="flex items-start space-x-3">
                         <Checkbox
                           id={feature}
                           checked={specificFeatures.includes(feature)}
                           onCheckedChange={(checked) => handleFeatureChange(feature, checked as boolean)}
+                          className="mt-0.5"
                         />
-                        <Label htmlFor={feature} className="text-sm leading-tight">{feature}</Label>
+                        <Label htmlFor={feature} className="text-sm leading-relaxed flex-1 cursor-pointer">{feature}</Label>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <Label>Preferred Date and Time for Demo *</Label>
+                  <Label className="text-base font-medium">Preferred Date and Time for Demo *</Label>
+                  <p className="text-sm text-gray-600 mt-1 mb-3">Select your preferred date and time for the demo session</p>
                   <Dialog open={showDateTimePicker} onOpenChange={setShowDateTimePicker}>
                     <DialogTrigger asChild>
                       <Button
                         type="button"
                         variant="outline"
-                        className="w-full mt-1 justify-start text-left font-normal"
+                        className="w-full mt-1 justify-start text-left font-normal h-12 border-2 hover:border-primary"
                       >
-                        <Calendar className="mr-2 h-4 w-4" />
-                        {formData.preferredDemoDate && formData.preferredDemoTime
-                          ? `${formData.preferredDemoDate} at ${formData.preferredDemoTime}`
-                          : "Select date and time"
-                        }
+                        <Calendar className="mr-3 h-5 w-5 text-primary" />
+                        <div className="flex flex-col items-start">
+                          {formData.preferredDemoDate && formData.preferredDemoTime ? (
+                            <>
+                              <span className="font-medium">{formData.preferredDemoDate}</span>
+                              <span className="text-sm text-gray-500">at {formData.preferredDemoTime}</span>
+                            </>
+                          ) : (
+                            <span className="text-gray-500">Click to select date and time</span>
+                          )}
+                        </div>
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-[600px]">
-                      <DialogHeader>
-                        <DialogTitle>Select Demo Date and Time</DialogTitle>
+                    <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
+                      <DialogHeader className="pb-4 border-b">
+                        <DialogTitle className="text-xl font-semibold text-center">
+                          Schedule Your Demo Session
+                        </DialogTitle>
+                        <p className="text-sm text-gray-600 text-center mt-2">
+                          Available Monday-Friday, 9:00 AM - 4:00 PM (1-hour sessions)
+                        </p>
                       </DialogHeader>
-                      <div className="flex flex-col md:flex-row gap-6">
-                        <div>
-                          <Label>Select Date (Monday-Friday only)</Label>
-                          <CalendarComponent
-                            mode="single"
-                            selected={selectedDate}
-                            onSelect={setSelectedDate}
-                            disabled={isDateDisabled}
-                            className="rounded-md border mt-2"
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <Label>Select Time (9 AM - 4 PM)</Label>
-                          <div className="grid grid-cols-2 gap-2 mt-2">
-                            {timeSlots.map((time) => (
-                              <Button
-                                key={time}
-                                type="button"
-                                variant={selectedTime === time ? "default" : "outline"}
-                                disabled={isTimeSlotBooked(time)}
-                                onClick={() => setSelectedTime(time)}
-                                className="justify-center"
-                              >
-                                <Clock className="mr-2 h-4 w-4" />
-                                {time}:00
-                                {isTimeSlotBooked(time) && " (Booked)"}
-                              </Button>
-                            ))}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 py-6">
+                        <div className="space-y-4">
+                          <div>
+                            <Label className="text-base font-medium">1. Select Date</Label>
+                            <p className="text-sm text-gray-600 mb-3">Choose from the next 30 days (weekdays only)</p>
+                            <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                              <CalendarComponent
+                                mode="single"
+                                selected={selectedDate}
+                                onSelect={setSelectedDate}
+                                disabled={isDateDisabled}
+                                className="rounded-md border-0 bg-white shadow-sm"
+                              />
+                            </div>
                           </div>
-                          <div className="mt-4">
+                        </div>
+                        <div className="space-y-4">
+                          <div>
+                            <Label className="text-base font-medium">2. Select Time Slot</Label>
+                            <p className="text-sm text-gray-600 mb-3">Choose your preferred 1-hour time slot</p>
+                            {selectedDate ? (
+                              <div className="grid grid-cols-2 gap-3">
+                                {timeSlots.map((time) => {
+                                  const isBooked = isTimeSlotBooked(time);
+                                  return (
+                                    <Button
+                                      key={time}
+                                      type="button"
+                                      variant={selectedTime === time ? "default" : "outline"}
+                                      disabled={isBooked}
+                                      onClick={() => setSelectedTime(time)}
+                                      className={`justify-center h-12 ${
+                                        isBooked 
+                                          ? "bg-red-50 border-red-200 text-red-400 cursor-not-allowed" 
+                                          : selectedTime === time 
+                                            ? "bg-primary text-white" 
+                                            : "hover:bg-primary hover:text-white"
+                                      }`}
+                                    >
+                                      <div className="flex flex-col items-center">
+                                        <div className="flex items-center">
+                                          <Clock className="mr-2 h-4 w-4" />
+                                          <span>{time}:00</span>
+                                        </div>
+                                        {isBooked && (
+                                          <span className="text-xs">Unavailable</span>
+                                        )}
+                                      </div>
+                                    </Button>
+                                  );
+                                })}
+                              </div>
+                            ) : (
+                              <div className="text-center py-8 text-gray-500 bg-gray-50 rounded-lg border-2 border-dashed">
+                                <Calendar className="mx-auto h-12 w-12 mb-3 text-gray-400" />
+                                <p>Please select a date first to see available time slots</p>
+                              </div>
+                            )}
+                          </div>
+                          {selectedDate && selectedTime && (
+                            <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                              <h4 className="font-medium text-green-800 mb-2">Selected Schedule:</h4>
+                              <p className="text-sm text-green-700">
+                                <strong>Date:</strong> {format(selectedDate, 'EEEE, MMMM d, yyyy')}
+                              </p>
+                              <p className="text-sm text-green-700">
+                                <strong>Time:</strong> {selectedTime}:00 - {parseInt(selectedTime) + 1}:00
+                              </p>
+                            </div>
+                          )}
+                          <div className="mt-6 pt-4 border-t">
                             <Button
                               type="button"
                               onClick={handleDateTimeSelect}
                               disabled={!selectedDate || !selectedTime}
-                              className="w-full"
+                              className="w-full h-12 text-base font-medium"
                             >
-                              Confirm Selection
+                              {!selectedDate || !selectedTime 
+                                ? "Select Date and Time" 
+                                : "Confirm This Schedule"
+                              }
                             </Button>
                           </div>
                         </div>
