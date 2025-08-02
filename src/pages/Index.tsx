@@ -1,4 +1,3 @@
-
 import { ArrowRight, CheckCircle, Star, Users, Building, TrendingUp, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -33,8 +32,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              The Future of 
-              <span className="text-accent-coral block mt-2">School Management</span>
+              Revolutionize School Management
             </h1>
             <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
               Revolutionize your school with a centralized, smart system that simplifies attendance, 
