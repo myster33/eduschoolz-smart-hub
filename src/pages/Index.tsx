@@ -1,3 +1,4 @@
+
 import { ArrowRight, CheckCircle, Star, Users, Building, TrendingUp, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,8 +18,8 @@ const Index = () => {
   const testimonialsAnimation = useScrollAnimation();
   const ctaAnimation = useScrollAnimation();
 
-  const studentsCount = useAnimatedCount(50000, 2000, statsAnimation.isVisible);
-  const schoolsCount = useAnimatedCount(500, 2000, statsAnimation.isVisible);
+  const studentsCount = useAnimatedCount(5000, 2000, statsAnimation.isVisible);
+  const schoolsCount = useAnimatedCount(50, 2000, statsAnimation.isVisible);
   const uptime = useAnimatedCount(99.9, 2000, statsAnimation.isVisible, 1);
 
   return (
@@ -80,13 +81,13 @@ const Index = () => {
       </section>
 
       {/* Key Features Preview */}
-      <section ref={featuresAnimation.ref} className="relative z-10 py-20 px-4">
+      <section ref={featuresAnimation.ref} className="relative z-10 py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
               Everything Your School Needs
             </h2>
-            <p className="text-xl text-primary-100 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               From attendance tracking to financial management, our comprehensive platform 
               handles it all with cutting-edge technology.
             </p>
@@ -125,15 +126,15 @@ const Index = () => {
                 description: "Advanced debtors management system with automated collection processes and reporting."
               }
             ].map((feature, index) => (
-              <Card key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+              <Card key={index} className="bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
                 <CardHeader className="text-center">
                   <div className="flex justify-center mb-4">
                     {feature.icon}
                   </div>
-                  <CardTitle className="text-white text-xl">{feature.title}</CardTitle>
+                  <CardTitle className="text-primary text-xl">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-primary-100 text-center">
+                  <CardDescription className="text-gray-600 text-center">
                     {feature.description}
                   </CardDescription>
                 </CardContent>
@@ -179,10 +180,10 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section ref={testimonialsAnimation.ref} className="relative z-10 py-20 px-4">
+      <section ref={testimonialsAnimation.ref} className="relative z-10 py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
               What Schools Are Saying
             </h2>
           </div>
@@ -208,20 +209,20 @@ const Index = () => {
                 rating: 5
               }
             ].map((testimonial, index) => (
-              <Card key={index} className="bg-white/10 backdrop-blur-sm border border-white/20">
+              <Card key={index} className="bg-gray-50 border border-gray-200">
                 <CardHeader>
                   <div className="flex mb-2">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
-                  <CardDescription className="text-primary-100 text-lg italic">
+                  <CardDescription className="text-gray-600 text-lg italic">
                     "{testimonial.content}"
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-white font-semibold">{testimonial.name}</p>
-                  <p className="text-primary-200">{testimonial.role}</p>
+                  <p className="text-primary font-semibold">{testimonial.name}</p>
+                  <p className="text-gray-500">{testimonial.role}</p>
                 </CardContent>
               </Card>
             ))}
@@ -230,12 +231,12 @@ const Index = () => {
       </section>
 
       {/* Final CTA */}
-      <section ref={ctaAnimation.ref} className="relative z-10 py-20 px-4">
+      <section ref={ctaAnimation.ref} className="relative z-10 py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
             Ready to Transform Your School?
           </h2>
-          <p className="text-xl text-primary-100 mb-8">
+          <p className="text-xl text-gray-600 mb-8">
             Join the revolution in school management. Get started today with our comprehensive platform.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
