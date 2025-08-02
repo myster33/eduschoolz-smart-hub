@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 
-export const useAnimatedCount = (target: number, duration: number = 3000, isVisible: boolean = false) => {
+export const useAnimatedCount = (target: number, duration: number = 3000, isVisible: boolean = false, decimals: number = 0) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -15,7 +15,9 @@ export const useAnimatedCount = (target: number, duration: number = 3000, isVisi
       const progress = Math.min((currentTime - startTime) / duration, 1);
       
       const easedProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
-      const currentCount = Math.floor(easedProgress * target);
+      const currentCount = decimals > 0 
+        ? parseFloat((easedProgress * target).toFixed(decimals))
+        : Math.floor(easedProgress * target);
       
       setCount(currentCount);
       
@@ -27,7 +29,7 @@ export const useAnimatedCount = (target: number, duration: number = 3000, isVisi
     };
 
     requestAnimationFrame(animate);
-  }, [target, duration, isVisible]);
+  }, [target, duration, isVisible, decimals]);
 
   return count;
 };

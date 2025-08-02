@@ -11,15 +11,15 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useAnimatedCount } from '@/hooks/useAnimatedCount';
 
 const Index = () => {
-  const heroRef = useScrollAnimation();
-  const featuresRef = useScrollAnimation();
-  const statsRef = useScrollAnimation();
-  const testimonialsRef = useScrollAnimation();
-  const ctaRef = useScrollAnimation();
+  const heroAnimation = useScrollAnimation();
+  const featuresAnimation = useScrollAnimation();
+  const statsAnimation = useScrollAnimation();
+  const testimonialsAnimation = useScrollAnimation();
+  const ctaAnimation = useScrollAnimation();
 
-  const studentsCount = useAnimatedCount(50000, 2000);
-  const schoolsCount = useAnimatedCount(500, 2000);
-  const uptime = useAnimatedCount(99.9, 2000, 1);
+  const studentsCount = useAnimatedCount(50000, 2000, statsAnimation.isVisible);
+  const schoolsCount = useAnimatedCount(500, 2000, statsAnimation.isVisible);
+  const uptime = useAnimatedCount(99.9, 2000, statsAnimation.isVisible, 1);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary via-primary-600 to-primary-700 relative overflow-hidden">
@@ -28,7 +28,7 @@ const Index = () => {
       <ScrollingBackground />
       
       {/* Hero Section */}
-      <section ref={heroRef} className="relative z-10 pt-20 pb-16 px-4">
+      <section ref={heroAnimation.ref} className="relative z-10 pt-20 pb-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
@@ -80,7 +80,7 @@ const Index = () => {
       </section>
 
       {/* Key Features Preview */}
-      <section ref={featuresRef} className="relative z-10 py-20 px-4">
+      <section ref={featuresAnimation.ref} className="relative z-10 py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -144,7 +144,7 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section ref={statsRef} className="relative z-10 py-20 px-4 bg-black/20">
+      <section ref={statsAnimation.ref} className="relative z-10 py-20 px-4 bg-black/20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -179,7 +179,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section ref={testimonialsRef} className="relative z-10 py-20 px-4">
+      <section ref={testimonialsAnimation.ref} className="relative z-10 py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -230,7 +230,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA */}
-      <section ref={ctaRef} className="relative z-10 py-20 px-4">
+      <section ref={ctaAnimation.ref} className="relative z-10 py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Ready to Transform Your School?
