@@ -17,9 +17,9 @@ const Index = () => {
   const testimonialsAnimation = useScrollAnimation();
   const ctaAnimation = useScrollAnimation();
 
-  const studentsCount = useAnimatedCount(5000, 2000, statsAnimation.isVisible);
-  const schoolsCount = useAnimatedCount(50, 2000, statsAnimation.isVisible);
-  const uptime = useAnimatedCount(99.9, 2000, statsAnimation.isVisible, 1);
+  const studentsCount = useAnimatedCount(5000, 2000, true);
+  const schoolsCount = useAnimatedCount(50, 2000, true);
+  const uptime = useAnimatedCount(99.9, 2000, true, 1);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary via-primary-600 to-primary-700 relative overflow-hidden">
