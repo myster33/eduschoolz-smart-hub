@@ -31,7 +31,7 @@ const Index = () => {
       <section ref={heroAnimation.ref} className="relative z-10 pt-20 pb-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
               Revolutionize School Management
             </h1>
             <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
@@ -123,19 +123,21 @@ const Index = () => {
                 description: "Advanced debtors management system with automated collection processes and reporting."
               }
             ].map((feature, index) => (
-              <Card key={index} className="bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-                <CardHeader className="text-center">
-                  <div className="flex justify-center mb-4">
-                    {feature.icon}
-                  </div>
-                  <CardTitle className="text-primary text-xl">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-600 text-center">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+              <Link key={index} to="/features">
+                <Card className="bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                  <CardHeader className="text-center">
+                    <div className="flex justify-center mb-4">
+                      {feature.icon}
+                    </div>
+                    <CardTitle className="text-primary text-xl">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-gray-600 text-center">
+                      {feature.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
@@ -188,20 +190,20 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                name: "Sarah Johnson",
-                role: "Principal, Greenwood High",
+                name: "Thomas Peter Davids",
+                role: "Principal, Royal Kings School",
                 content: "EduSchools has completely transformed how we manage our school. The attendance system alone has saved us countless hours every week.",
                 rating: 5
               },
               {
-                name: "Michael Chen",
-                role: "Administrator, Riverside Academy",
+                name: "T. Dlamini",
+                role: "Administrator, Crownfield School",
                 content: "The financial management features are incredible. We now have complete visibility into our school's finances with detailed reporting.",
                 rating: 5
               },
               {
                 name: "Lisa Williams",
-                role: "Vice Principal, Oakwood Elementary",
+                role: "Educator, Lambano Academy",
                 content: "Parent communication has never been easier. The mobile app keeps everyone connected and informed in real-time.",
                 rating: 5
               }
