@@ -35,7 +35,7 @@ const Index = () => {
               Eduschools
             </h1>
             <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              Delivering intelligent, reliable, secure, and user-friendly school management solutions with ongoing support.
+              Delivering intelligent, reliable, secure, and user-friendly school management solutions with ongoing technical support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link to="/book-demo">
