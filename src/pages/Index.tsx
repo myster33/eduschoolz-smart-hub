@@ -1,3 +1,4 @@
+
 import { ArrowRight, CheckCircle, Star, Users, Building, TrendingUp, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -32,10 +33,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-              Revolutionize School Management
+              Eduschools
             </h1>
             <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
-              Delivering reliable, secure, and user-friendly school management solutions with ongoing support to ensure your institution runs smoothly and efficiently.
+              Delivering intelligent, reliable, secure, and user-friendly school management solutions with ongoing support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link to="/book-demo">
@@ -43,7 +44,7 @@ const Index = () => {
                   size="lg" 
                   className="bg-accent-coral hover:bg-red-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl transform transition-all duration-300 hover:scale-105"
                 >
-                  Sign-up now for a FREE Installation!
+                  Book Free Installation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
@@ -82,7 +83,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-              Everything Your School Needs
+              What a School Needs
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               From attendance tracking to financial management, our comprehensive platform 
@@ -148,7 +149,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Trusted by Schools Nationwide
+              Trusted by Schools
             </h2>
             <p className="text-xl text-primary-100">
               Join thousands of schools that have transformed their management systems
@@ -183,7 +184,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-              What Schools Are Saying
+              Testimonials
             </h2>
           </div>
           
@@ -244,7 +245,7 @@ const Index = () => {
                 size="lg" 
                 className="bg-accent-coral hover:bg-red-600 text-white px-8 py-4 text-lg font-semibold shadow-2xl transform transition-all duration-300 hover:scale-105"
               >
-                Start Your FREE Installation
+                FREE Installation
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
