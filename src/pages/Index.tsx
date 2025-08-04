@@ -1,4 +1,3 @@
-
 import { ArrowRight, CheckCircle, Star, Users, Building, TrendingUp, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -32,7 +31,7 @@ const Index = () => {
       <section ref={heroAnimation.ref} className="relative z-10 pt-20 pb-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Eduschools
             </h1>
             <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
