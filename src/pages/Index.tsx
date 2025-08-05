@@ -31,7 +31,7 @@ const Index = () => {
       <section ref={heroAnimation.ref} className="relative z-10 pt-20 pb-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Eduschools
             </h1>
             <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
@@ -81,7 +81,7 @@ const Index = () => {
       <section ref={featuresAnimation.ref} className="relative z-10 py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
               What a School Needs
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -147,7 +147,7 @@ const Index = () => {
       <section ref={statsAnimation.ref} className="relative z-10 py-20 px-4 bg-black/20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Trusted by Schools
             </h2>
             <p className="text-xl text-primary-100">
@@ -182,7 +182,7 @@ const Index = () => {
       <section ref={testimonialsAnimation.ref} className="relative z-10 py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
               Testimonials
             </h2>
           </div>
@@ -232,7 +232,7 @@ const Index = () => {
       {/* Final CTA */}
       <section ref={ctaAnimation.ref} className="relative z-10 py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
             Ready to Transform Your School?
           </h2>
           <p className="text-xl text-gray-600 mb-8">
