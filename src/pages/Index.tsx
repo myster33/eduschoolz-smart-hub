@@ -31,10 +31,10 @@ const Index = () => {
       <section ref={heroAnimation.ref} className="relative z-10 pt-20 pb-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-6 leading-tight">
               Eduschools
             </h1>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
+            <p className="text-2xl md:text-3xl text-primary-100 mb-8 leading-relaxed">
               Delivering intelligent, reliable, secure, and user-friendly school management solutions with ongoing technical support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
