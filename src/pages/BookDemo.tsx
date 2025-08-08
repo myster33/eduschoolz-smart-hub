@@ -298,9 +298,9 @@ const BookDemo = () => {
       <div className="container mx-auto px-4 py-8 pt-24">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-white mb-4">Talk to us and Book your Installation</h1>
+            <h1 className="text-4xl font-bold text-white mb-4">Book your Installation Demo</h1>
             <p className="text-xl text-primary-100">
-              Fill out the form below to schedule your Chat slot and installation.
+              Fill out the form below to schedule your installation demo and know more about the product.
             </p>
           </div>
           
