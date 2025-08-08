@@ -122,7 +122,7 @@ const BookDemo = () => {
       }
 
       const formattedDate = format(selectedDate, 'EEEE, MMMM d, yyyy');
-      const formattedTime = `${selectedTime}:00`;
+      const formattedTime = `${selectedTime}`;
       
       setFormData(prev => ({
         ...prev,
@@ -550,7 +550,7 @@ const BookDemo = () => {
                                       <div className="flex flex-col items-center">
                                         <div className="flex items-center">
                                           <Clock className="mr-2 h-4 w-4" />
-                                          <span>{time}:00</span>
+                                          <span>{time}</span>
                                         </div>
                                         {isBooked && (
                                           <span className="text-xs">Unavailable</span>
@@ -575,7 +575,7 @@ const BookDemo = () => {
                                 <strong>Date:</strong> {format(selectedDate, 'EEEE, MMMM d, yyyy')}
                               </p>
                               <p className="text-sm text-green-700">
-                                <strong>Time:</strong> {selectedTime}:00 - {parseInt(selectedTime) + 1}:00
+                                <strong>Time:</strong> {selectedTime} - {parseInt(selectedTime) + 1}:00
                               </p>
                             </div>
                           )}
