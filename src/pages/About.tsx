@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
@@ -11,8 +10,8 @@ const About = () => {
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
 
   const schoolsCount = useAnimatedCount(50, 3000, statsVisible);
-  const studentsCount = useAnimatedCount(10000, 3000, statsVisible);
-  const parentsCount = useAnimatedCount(5000, 3000, statsVisible);
+  const studentsCount = useAnimatedCount(5000, 3000, statsVisible);
+  const parentsCount = useAnimatedCount(3000, 3000, statsVisible);
 
   const values = [
     {
