@@ -298,9 +298,9 @@ const BookDemo = () => {
       <div className="container mx-auto px-4 py-8 pt-24">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-white mb-4">Book Your Installation Demo</h1>
+            <h1 className="text-4xl font-bold text-white mb-4">Talk to us and Book your Installation</h1>
             <p className="text-xl text-primary-100">
-              Ready to get started? Fill out the form below to schedule your installation demo.
+              Fill out the form below to schedule your Chat slot and installation.
             </p>
           </div>
           
@@ -673,7 +673,7 @@ const BookDemo = () => {
                 className="w-full text-lg py-3"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Submitting...' : 'Book Installation Demo'}
+                {isSubmitting ? 'Submitting...' : 'Submit'}
               </Button>
             </form>
           </div>
@@ -764,10 +764,10 @@ const BookDemo = () => {
                 <CheckCircle className="h-16 w-16 text-green-500" />
               </div>
               <AlertDialogTitle className="text-xl font-semibold text-center">
-                Installation Demo Request Sent Successfully!
+                Installation Request Sent Successfully!
               </AlertDialogTitle>
               <AlertDialogDescription className="text-center text-gray-600">
-                We'll contact you within 24 hours to confirm your installation demo appointment.
+                We'll contact you within 24 hours to confirm your installation appointment.
               </AlertDialogDescription>
             </AlertDialogHeader>
             
