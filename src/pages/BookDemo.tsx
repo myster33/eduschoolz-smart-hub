@@ -73,7 +73,8 @@ const BookDemo = () => {
   const loadBookedSlots = async () => {
     setIsLoadingSlots(true);
     try {
-      const { data: bookings, error } = await supabase
+      // Use type assertion to work around the types issue temporarily
+      const { data: bookings, error } = await (supabase as any)
         .from('demo_bookings')
         .select('booking_datetime')
         .neq('status', 'cancelled');
@@ -84,7 +85,7 @@ const BookDemo = () => {
       }
 
       const bookedSlotsSet = new Set<string>();
-      bookings?.forEach((booking) => {
+      bookings?.forEach((booking: any) => {
         if (booking.booking_datetime) {
           const bookingDate = new Date(booking.booking_datetime);
           const dateKey = format(bookingDate, 'yyyy-MM-dd');
@@ -266,7 +267,8 @@ const BookDemo = () => {
       const bookingDateTime = new Date(parsedDate);
       bookingDateTime.setHours(hours, minutes, 0, 0);
 
-      const { data, error } = await supabase
+      // Use type assertion to work around the types issue temporarily
+      const { data, error } = await (supabase as any)
         .from('demo_bookings')
         .insert([
           {
