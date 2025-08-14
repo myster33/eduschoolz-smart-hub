@@ -14,6 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
+      demo_bookings: {
+        Row: {
+          additional_comments: string | null
+          booking_datetime: string
+          created_at: string
+          current_system: string | null
+          demo_mode: string
+          email: string
+          id: string
+          name: string
+          phone_number: string | null
+          position: string
+          preferred_contact_method: string
+          preferred_demo_date: string
+          preferred_demo_time: string
+          school_address: string
+          school_name: string
+          school_type: string
+          specific_needs: string[] | null
+          status: string
+          student_count: string
+          timeframe: string
+          updated_at: string
+        }
+        Insert: {
+          additional_comments?: string | null
+          booking_datetime: string
+          created_at?: string
+          current_system?: string | null
+          demo_mode: string
+          email: string
+          id?: string
+          name: string
+          phone_number?: string | null
+          position: string
+          preferred_contact_method: string
+          preferred_demo_date: string
+          preferred_demo_time: string
+          school_address: string
+          school_name: string
+          school_type: string
+          specific_needs?: string[] | null
+          status?: string
+          student_count: string
+          timeframe: string
+          updated_at?: string
+        }
+        Update: {
+          additional_comments?: string | null
+          booking_datetime?: string
+          created_at?: string
+          current_system?: string | null
+          demo_mode?: string
+          email?: string
+          id?: string
+          name?: string
+          phone_number?: string | null
+          position?: string
+          preferred_contact_method?: string
+          preferred_demo_date?: string
+          preferred_demo_time?: string
+          school_address?: string
+          school_name?: string
+          school_type?: string
+          specific_needs?: string[] | null
+          status?: string
+          student_count?: string
+          timeframe?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       kv_store_067ea15e: {
         Row: {
           key: string

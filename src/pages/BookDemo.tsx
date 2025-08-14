@@ -73,7 +73,6 @@ const BookDemo = () => {
   const loadBookedSlots = async () => {
     setIsLoadingSlots(true);
     try {
-      // Use type assertion to work around the types issue temporarily
       const { data: bookings, error } = await (supabase as any)
         .from('demo_bookings')
         .select('booking_datetime')
@@ -267,7 +266,6 @@ const BookDemo = () => {
       const bookingDateTime = new Date(parsedDate);
       bookingDateTime.setHours(hours, minutes, 0, 0);
 
-      // Use type assertion to work around the types issue temporarily
       const { data, error } = await (supabase as any)
         .from('demo_bookings')
         .insert([
