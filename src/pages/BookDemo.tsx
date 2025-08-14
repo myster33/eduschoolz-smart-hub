@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowLeft, Calendar, Clock, ChevronLeft, ChevronRight, CheckCircle, Home } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { sendBookDemoEmail, type BookDemoFormData } from '@/utils/emailService';
-import { format, addDays, isWeekend, isBefore, startOfDay, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addWeeks, isSameMonth, getDay, addMonths, isSameDay } from 'date-fns';
+import { format, addDays, isWeekend, isBefore, startOfDay, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addWeeks, isSameMonth, getDay, addMonths, isSameDay, parse } from 'date-fns';
+import { supabase } from '@/integrations/supabase/client';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -28,6 +29,7 @@ const BookDemo = () => {
   const [bookedSlots, setBookedSlots] = useState<Set<string>>(new Set());
   const [specificFeatures, setSpecificFeatures] = useState<string[]>([]);
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [isLoadingSlots, setIsLoadingSlots] = useState(false);
 
   const [formData, setFormData] = useState<BookDemoFormData>({
     name: '',
@@ -66,6 +68,43 @@ const BookDemo = () => {
   ];
 
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // Load booked slots from Supabase
+  const loadBookedSlots = async () => {
+    setIsLoadingSlots(true);
+    try {
+      const { data: bookings, error } = await supabase
+        .from('demo_bookings')
+        .select('booking_datetime')
+        .neq('status', 'cancelled');
+
+      if (error) {
+        console.error('Error loading booked slots:', error);
+        return;
+      }
+
+      const bookedSlotsSet = new Set<string>();
+      bookings?.forEach((booking) => {
+        if (booking.booking_datetime) {
+          const bookingDate = new Date(booking.booking_datetime);
+          const dateKey = format(bookingDate, 'yyyy-MM-dd');
+          const timeKey = format(bookingDate, 'HH:mm');
+          bookedSlotsSet.add(`${dateKey}-${timeKey}`);
+        }
+      });
+
+      setBookedSlots(bookedSlotsSet);
+    } catch (error) {
+      console.error('Error loading booked slots:', error);
+    } finally {
+      setIsLoadingSlots(false);
+    }
+  };
+
+  // Load booked slots on component mount
+  useEffect(() => {
+    loadBookedSlots();
+  }, []);
 
   // Generate calendar weeks for a given month
   const generateCalendarWeeks = (month: Date) => {
@@ -130,8 +169,6 @@ const BookDemo = () => {
         preferredDemoTime: formattedTime
       }));
 
-      setBookedSlots(prev => new Set([...prev, dateTimeKey]));
-      
       setShowDateTimePicker(false);
       setSelectedDate(undefined);
       setSelectedTime('');
@@ -221,6 +258,57 @@ const BookDemo = () => {
     );
   };
 
+  const saveBookingToSupabase = async (bookingData: BookDemoFormData) => {
+    try {
+      // Parse the date and time to create a proper datetime
+      const parsedDate = parse(bookingData.preferredDemoDate, 'EEEE, MMMM d, yyyy', new Date());
+      const [hours, minutes] = bookingData.preferredDemoTime.split(':').map(Number);
+      const bookingDateTime = new Date(parsedDate);
+      bookingDateTime.setHours(hours, minutes, 0, 0);
+
+      const { data, error } = await supabase
+        .from('demo_bookings')
+        .insert([
+          {
+            name: bookingData.name,
+            email: bookingData.email,
+            school_name: bookingData.schoolName,
+            position: bookingData.position,
+            phone_number: bookingData.phoneNumber || null,
+            school_type: bookingData.schoolType,
+            student_count: bookingData.studentCount,
+            current_system: bookingData.currentSystem || null,
+            specific_needs: bookingData.specificNeeds,
+            preferred_contact_method: bookingData.preferredContactMethod,
+            timeframe: bookingData.timeframe,
+            additional_comments: bookingData.additionalComments || null,
+            preferred_demo_date: bookingData.preferredDemoDate,
+            preferred_demo_time: bookingData.preferredDemoTime,
+            demo_mode: bookingData.demoMode,
+            school_address: bookingData.schoolAddress,
+            booking_datetime: bookingDateTime.toISOString(),
+            status: 'pending'
+          }
+        ])
+        .select();
+
+      if (error) {
+        console.error('Supabase error:', error);
+        throw error;
+      }
+
+      console.log('Booking saved to Supabase:', data);
+      
+      // Refresh booked slots after successful booking
+      await loadBookedSlots();
+      
+      return data;
+    } catch (error) {
+      console.error('Error saving booking to Supabase:', error);
+      throw error;
+    }
+  };
+
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -241,6 +329,19 @@ const BookDemo = () => {
       return;
     }
 
+    // Check if the selected time slot is still available
+    const parsedDate = parse(formData.preferredDemoDate, 'EEEE, MMMM d, yyyy', new Date());
+    const dateTimeKey = `${format(parsedDate, 'yyyy-MM-dd')}-${formData.preferredDemoTime}`;
+    
+    if (bookedSlots.has(dateTimeKey)) {
+      toast({
+        title: "Time Slot No Longer Available",
+        description: "This time slot has been booked by another user. Please select a different time.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     // Show confirmation dialog instead of submitting directly
     setShowConfirmDialog(true);
   };
@@ -250,6 +351,10 @@ const BookDemo = () => {
     setIsSubmitting(true);
 
     try {
+      // Save to Supabase first
+      await saveBookingToSupabase(formData);
+      
+      // Then send email
       await sendBookDemoEmail(formData);
       
       setIsSubmitting(false);
@@ -276,11 +381,11 @@ const BookDemo = () => {
       });
       setSpecificFeatures([]);
     } catch (error) {
-      console.error('Error sending demo request:', error);
+      console.error('Error processing demo request:', error);
       setIsSubmitting(false);
       toast({
         title: "Error",
-        description: "Failed to send demo request. Please try again or contact us directly.",
+        description: "Failed to process demo request. Please try again or contact us directly.",
         variant: "destructive",
       });
     }
@@ -465,6 +570,7 @@ const BookDemo = () => {
                         type="button"
                         variant="outline"
                         className="w-full mt-1 justify-start text-left font-normal h-12 border-2 hover:border-primary"
+                        disabled={isLoadingSlots}
                       >
                         <Calendar className="mr-3 h-5 w-5 text-primary" />
                         <div className="flex flex-col items-start">
@@ -474,7 +580,9 @@ const BookDemo = () => {
                               <span className="text-sm text-gray-500">at {formData.preferredDemoTime}</span>
                             </>
                           ) : (
-                            <span className="text-gray-500">Click to select date and time</span>
+                            <span className="text-gray-500">
+                              {isLoadingSlots ? 'Loading available slots...' : 'Click to select date and time'}
+                            </span>
                           )}
                         </div>
                       </Button>
@@ -553,7 +661,7 @@ const BookDemo = () => {
                                           <span>{time}</span>
                                         </div>
                                         {isBooked && (
-                                          <span className="text-xs">Unavailable</span>
+                                          <span className="text-xs">Booked</span>
                                         )}
                                       </div>
                                     </Button>
@@ -671,7 +779,7 @@ const BookDemo = () => {
               <Button 
                 type="submit" 
                 className="w-full text-lg py-3"
-                disabled={isSubmitting}
+                disabled={isSubmitting || isLoadingSlots}
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
               </Button>
