@@ -20,47 +20,12 @@ export interface BookDemoFormData {
 }
 
 export const sendBookDemoEmail = async (formData: BookDemoFormData): Promise<void> => {
-  // Option 1: Using EmailJS (frontend solution)
-  // First, you would need to install EmailJS: npm install @emailjs/browser
-  // Then set up your EmailJS account and get your service ID, template ID, and public key
-  
-  /*
-  import emailjs from '@emailjs/browser';
-  
-  const templateParams = {
-    to_email: 'admin@eduschools.co.za',
-    from_name: formData.name,
-    from_email: formData.email,
-    school_name: formData.schoolName,
-    school_address: formData.schoolAddress,
-    position: formData.position,
-    phone: formData.phoneNumber,
-    school_type: formData.schoolType,
-    student_count: formData.studentCount,
-    current_system: formData.currentSystem,
-    specific_needs: formData.specificNeeds.join(', '),
-    contact_method: formData.preferredContactMethod,
-    timeframe: formData.timeframe,
-    demo_date: formData.preferredDemoDate,
-    demo_time: formData.preferredDemoTime,
-    demo_mode: formData.demoMode,
-    comments: formData.additionalComments,
-    submission_date: new Date().toLocaleString()
-  };
-
-  await emailjs.send(
-    'YOUR_SERVICE_ID', 
-    'YOUR_TEMPLATE_ID', 
-    templateParams, 
-    'YOUR_PUBLIC_KEY'
-  );
-  */
-
-  // Option 2: Send to your backend API
-  const response = await fetch('/api/send-demo-request', {
+  // Send booking data to Supabase edge function
+  const response = await fetch('https://cywhqczjppupwiliofbo.supabase.co/functions/v1/send-demo-email', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN5d2hxY3pqcHB1cHdpbGlvZmJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUxNzUwNzgsImV4cCI6MjA3MDc1MTA3OH0.nNib6UdaoCaYH8jWoZAwQUbnCN0D_KcATG3ucG5ZcQk`,
     },
     body: JSON.stringify({
       ...formData,
@@ -70,26 +35,16 @@ export const sendBookDemoEmail = async (formData: BookDemoFormData): Promise<voi
   });
 
   if (!response.ok) {
-    throw new Error('Failed to send demo request');
+    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+    console.error('Email sending failed:', errorData);
+    throw new Error(`Failed to send demo request: ${errorData.error || 'Unknown error'}`);
   }
 
-  // Option 3: Using a service like Formspree, Netlify Forms, or similar
-  /*
-  const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: 'admin@eduschools.co.za',
-      subject: `Demo Request from ${formData.name} - ${formData.schoolName}`,
-      message: formatEmailMessage(formData)
-    }),
-  });
-  */
+  const result = await response.json();
+  console.log('Email sent successfully:', result);
 };
 
-// Helper function to format the email message
+// Helper function to format the email message (kept for compatibility)
 export const formatEmailMessage = (formData: BookDemoFormData): string => {
   return `
 Demo Request Details:
