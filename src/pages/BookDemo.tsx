@@ -73,10 +73,8 @@ const BookDemo = () => {
   const loadBookedSlots = async () => {
     setIsLoadingSlots(true);
     try {
-      const { data: bookings, error } = await (supabase as any)
-        .from('demo_bookings')
-        .select('booking_datetime')
-        .neq('status', 'cancelled');
+      const { data: bookings, error } = await supabase
+        .rpc('get_booked_slots');
 
       if (error) {
         console.error('Error loading booked slots:', error);
