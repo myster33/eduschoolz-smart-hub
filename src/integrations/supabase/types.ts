@@ -106,7 +106,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_booked_slots: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          booking_datetime: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
